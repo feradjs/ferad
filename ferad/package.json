@@ -4,8 +4,8 @@
   "description": "Front End Rapid Application Development",
   "bin": "lib/main.js",
   "scripts": {
-    "prepublish": "babel src -d lib",
-    "start": "babel-node src/main.js",
+    "prepublish": "./node_modules/.bin/babel src -d lib",
+    "start": "./node_modules/.bin/babel-node src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

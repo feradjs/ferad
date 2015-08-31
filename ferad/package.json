@@ -2,8 +2,9 @@
   "name": "ferad",
   "version": "1.0.0",
   "description": "Front End Rapid Application Development",
-  "main": "src/main.js",
+  "bin": "src/main.js",
   "scripts": {
+    "start": "node --harmony src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

@@ -2,9 +2,10 @@
   "name": "ferad",
   "version": "1.0.0",
   "description": "Front End Rapid Application Development",
-  "bin": "src/main.js",
+  "bin": "lib/main.js",
   "scripts": {
-    "start": "node --harmony src/main.js",
+    "prepublish": "babel src -d lib",
+    "start": "babel-node src/main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/tserdyuk/ferad/issues"
   },
-  "homepage": "https://github.com/tserdyuk/ferad"
+  "homepage": "https://github.com/tserdyuk/ferad",
+  "devDependencies": {
+    "babel": "^5.8.23"
+  }
 }

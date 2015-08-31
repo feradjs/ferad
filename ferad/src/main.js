@@ -1,3 +1,3 @@
-#!/usr/bin/node --harmony
+#!/usr/bin/env node
 
 console.log('Ferad')

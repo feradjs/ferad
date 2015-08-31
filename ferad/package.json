@@ -1,0 +1,19 @@
+{
+  "name": "ferad",
+  "version": "1.0.0",
+  "description": "Front End Rapid Application Development",
+  "main": "src/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tserdyuk/ferad.git"
+  },
+  "author": "Taras Serdyuk <taras@techburg.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tserdyuk/ferad/issues"
+  },
+  "homepage": "https://github.com/tserdyuk/ferad"
+}

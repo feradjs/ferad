@@ -3,6 +3,7 @@
 import rc from 'rc'
 import serve from './serve'
 import Locate from './locate'
+import watch from './watch'
 
 const options = rc('ferad', {
 	appConfig: 'app.json',
@@ -12,5 +13,7 @@ const options = rc('ferad', {
 const locate = Locate(options.appConfig, options.path)
 
 serve(options.port, (project) => {
-	locate(project, console.log)
+	locate(project, ([root]) => {
+		watch(root, 8000)
+	})
 })

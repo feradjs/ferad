@@ -4,8 +4,8 @@
   "description": "Front End Rapid Application Development Utilities",
   "main": "lib/index.js",
   "scripts": {
-    "prepublish": "./node_modules/.bin/babel src -d lib",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "babel src -d lib",
+    "test": "mocha -r babel/register"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/tserdyuk/ferad-utils",
   "devDependencies": {
-    "babel": "^5.8.23"
+    "babel": "^5.8.23",
+    "mocha": "^2.3.0",
+    "sinon": "^1.16.1"
   }
 }

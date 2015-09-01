@@ -1,0 +1,25 @@
+{
+  "name": "ferad-tasks",
+  "version": "1.0.0",
+  "description": "Front End Rapid Application Development Tasks",
+  "main": "lib/index.js",
+  "scripts": {
+    "prepublish": "rm -rf lib && babel src -d lib",
+    "test": "mocha -r babel/register",
+    "watch": "mocha -w -r babel/register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tserdyuk/ferad-tasks.git"
+  },
+  "author": "Taras Serdyuk <taras@techburg.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tserdyuk/ferad-tasks/issues"
+  },
+  "homepage": "https://github.com/tserdyuk/ferad-tasks",
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "mocha": "^2.3.0"
+  }
+}

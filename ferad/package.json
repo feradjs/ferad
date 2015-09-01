@@ -21,5 +21,8 @@
   "devDependencies": {
     "babel": "^5.8.23",
     "mocha": "^2.3.0"
+  },
+  "dependencies": {
+    "rc": "^1.1.1"
   }
 }

@@ -4,8 +4,9 @@
   "description": "Front End Rapid Application Development Utilities",
   "main": "lib/index.js",
   "scripts": {
-    "prepublish": "babel src -d lib",
-    "test": "mocha -r babel/register"
+    "prepublish": "rm -rf lib && babel src -d lib",
+    "test": "mocha -r babel/register",
+    "watch": "mocha -w -r babel/register"
   },
   "repository": {
     "type": "git",

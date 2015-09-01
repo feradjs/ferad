@@ -4,7 +4,7 @@
   "description": "Front End Rapid Application Development",
   "bin": "lib/main.js",
   "scripts": {
-    "prepublish": "babel src -d lib",
+    "prepublish": "rm -rf lib && babel src -d lib",
     "start": "babel-node src/main.js",
     "test": "mocha -r babel/register"
   },

@@ -21,5 +21,9 @@ function dest({ dest }, stream) {
 export default {
 	jade(o) {
 		return emit(o, src(o).pipe(_.jade()))
+	},
+	sass(o) {
+		return emit(o, src(o).pipe(_.sass())
+			.pipe(_.minifyCss()))
 	}
 }

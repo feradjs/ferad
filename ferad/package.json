@@ -2,11 +2,11 @@
   "name": "ferad",
   "version": "1.0.0",
   "description": "Front End Rapid Application Development",
-  "bin": "lib/main.js",
+  "bin": "dist/main.js",
   "scripts": {
-    "prepublish": "rm -rf lib && babel src -d lib",
+    "prepublish": "rm -rf dist && babel src -d dist",
     "start": "babel-node src/main.js",
-    "watch": "babel -w src -d lib & supervisor -w lib lib/main.js",
+    "watch": "babel -w src -d dist & supervisor -w dist dist/main.js",
     "test": "mocha -r babel/register"
   },
   "repository": {

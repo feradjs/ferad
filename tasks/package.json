@@ -2,9 +2,9 @@
   "name": "ferad-tasks",
   "version": "1.0.0",
   "description": "Front End Rapid Application Development Tasks",
-  "main": "lib/index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "prepublish": "rm -rf lib && babel src -d lib",
+    "prepublish": "rm -rf dist && babel src -d dist",
     "test": "mocha -r babel/register",
     "watch": "mocha -w -r babel/register"
   },

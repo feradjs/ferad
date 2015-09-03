@@ -1,9 +1,14 @@
 import gulp from 'gulp'
 import plugins from 'gulp-load-plugins'
+import u from 'ferad-utils'
 const _ = plugins()
 
-function src({ src, cwd }) {
-	return gulp.src(src, { cwd })
+function src({ src, cwd, plumber = false }) {
+	return (plumber ? plumb : u.id)
+		(gulp.src(src, { cwd }))
+}
+function plumb(stream) {
+	return stream.pipe(_.plumber())
 }
 function emit(o, stream) {
 	return dest(o, stream)

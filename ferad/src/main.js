@@ -10,10 +10,13 @@ const options = rc('ferad', {
 	path: ['~'],
 	port: 5000
 })
-const locate = Locate(options.appConfig, options.path)
+
+/*const locate = Locate(options.appConfig, options.path)
 
 serve(options.port, (project) => {
 	locate(project, ([root]) => {
 		watch(root, 8000)
 	})
-})
+})*/
+
+watch(process.cwd(), 8000)

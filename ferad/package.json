@@ -25,7 +25,6 @@
     "supervisor": "^0.7.1"
   },
   "dependencies": {
-    "express": "^4.13.3",
     "ferad-tasks": "^1.0.0",
     "gulp": "^3.9.0",
     "rc": "^1.1.1"

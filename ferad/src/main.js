@@ -8,7 +8,7 @@ import execute from './execute'
 const env = rc('ferad', {
 	configurator: './configurator',
 	appConfig: 'app.json',
-	dest: 'dest',
+	dest: 'dist',
 	port: 5000
 })
 const app = json.readFileSync(env.appConfig, { throws: false })

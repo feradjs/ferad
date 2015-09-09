@@ -1,7 +1,8 @@
 #!/usr/bin/env node
+require('babel/polyfill')
 
 import rc from 'rc'
-import watch from './watch'
+import execute from './execute'
 
 const env = rc('ferad', {
 	appConfig: 'app.json',
@@ -9,6 +10,6 @@ const env = rc('ferad', {
 	port: 5000
 })
 const configurator = require(env.configurator)
-const config = configurator(env, null)
+const tasks = configurator(env, null, process.cwd())
 
-watch(process.cwd(), config.port)
+execute(tasks)

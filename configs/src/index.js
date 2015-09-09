@@ -8,10 +8,10 @@ function defaults(env, app, cwd) {
 		}),
 		group('watch', ['watch-jade', 'watch-sass']),
 		defTask('watch-jade', 'watch', {
-			src: '**/*.jade', tasks: ['jade'], cwd
+			src: '**/*.jade', task: 'jade', cwd
 		}, ['jade']),
 		defTask('watch-sass', 'watch', {
-			src: '*.{scss,css}', tasks: ['sass'], cwd
+			src: '*.{scss,css}', task: 'sass', cwd
 		}, ['sass']),
 		defTask('jade', 'jade', {
 			src: '*.jade', dest, plumber: true, cwd

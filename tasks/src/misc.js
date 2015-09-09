@@ -6,7 +6,9 @@ export default {
 	serve(o) {
 		_.connect.server(o)
 	},
-	watch({ src, tasks, cwd }) {
-		gulp.watch(src, { cwd }, tasks)
+	watch({ src, task, cwd }, gulp) {
+		_.watch(src, { cwd }, _.batch(
+			(events, done) => gulp.start(task, done)
+		))
 	}
 }

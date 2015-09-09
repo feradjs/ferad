@@ -1,9 +1,10 @@
 
-function defaults({ port }, app, cwd) {
+function defaults(env, app, cwd) {
+	const { port, dest } = Object.assign({}, env, app)
 	return [
 		group('default', ['serve', 'watch']),
 		defTask('serve', 'serve', {
-			port, root: 'target/1', livereload: true
+			port, root: dest, livereload: true
 		}),
 		group('watch', ['watch-jade', 'watch-sass']),
 		defTask('watch-jade', 'watch', {
@@ -13,10 +14,10 @@ function defaults({ port }, app, cwd) {
 			src: '*.{scss,css}', tasks: ['sass'], cwd
 		}, ['sass']),
 		defTask('jade', 'jade', {
-			src: '*.jade', dest: 'target/1', plumber: true, cwd
+			src: '*.jade', dest, plumber: true, cwd
 		}),
 		defTask('sass', 'sass', {
-			src: '*.{scss,css}', dest: 'target/1', plumber: true, cwd
+			src: '*.{scss,css}', dest, plumber: true, cwd
 		})
 	]
 }

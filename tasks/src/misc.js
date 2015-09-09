@@ -5,5 +5,8 @@ const _ = plugins()
 export default {
 	serve(o) {
 		_.connect.server(o)
+	},
+	watch({ src, tasks, cwd }) {
+		gulp.watch(src, { cwd }, tasks)
 	}
 }

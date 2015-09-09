@@ -1,0 +1,25 @@
+{
+  "name": "ferad-configs",
+  "version": "1.0.0",
+  "description": "Front End Rapid Application Development Configurations",
+  "main": "dist/index.js",
+  "scripts": {
+    "prepublish": "rm -rf dist && babel src -d dist",
+    "test": "mocha -r babel/register",
+    "watch": "mocha -w -r babel/register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tserdyuk/ferad-configs.git"
+  },
+  "author": "Taras Serdyuk <taras@techburg.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tserdyuk/ferad-configs/issues"
+  },
+  "homepage": "https://github.com/tserdyuk/ferad-configs",
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "mocha": "^2.3.0"
+  }
+}

@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "ferad-tasks": "^1.0.0",
+    "ferad-configs": "^1.0.0",
     "gulp": "^3.9.0",
     "rc": "^1.1.1"
   }

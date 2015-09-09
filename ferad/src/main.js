@@ -3,10 +3,12 @@
 import rc from 'rc'
 import watch from './watch'
 
-const options = rc('ferad', {
+const env = rc('ferad', {
 	appConfig: 'app.json',
-	path: ['~'],
+	configurator: './configurator',
 	port: 5000
 })
+const configurator = require(env.configurator)
+const config = configurator(env, null)
 
-watch(process.cwd(), 8000)
+watch(process.cwd(), config.port)

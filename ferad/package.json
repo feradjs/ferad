@@ -25,9 +25,10 @@
     "supervisor": "^0.7.1"
   },
   "dependencies": {
-    "ferad-tasks": "^1.0.0",
     "ferad-configs": "^1.0.0",
+    "ferad-tasks": "^1.0.0",
     "gulp": "^3.9.0",
+    "jsonfile": "^2.2.1",
     "rc": "^1.1.1"
   }
 }

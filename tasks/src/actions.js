@@ -1,5 +1,5 @@
 import gulp from 'gulp'
-import _ from './commons'
+import _ from './common'
 
 export default {
 	serve(o) {

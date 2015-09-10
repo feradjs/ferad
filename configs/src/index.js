@@ -6,13 +6,16 @@ function defaults(env, app, cwd) {
 		defTask('serve', 'serve', {
 			port, root: dest, livereload: true
 		}),
-		group('watch', ['watch-jade', 'watch-sass']),
+		group('watch', ['watch-jade', 'watch-sass', 'watch-scripts']),
 		defTask('watch-jade', 'watch', {
 			src: '**/*.jade', task: 'jade', cwd
 		}, ['jade']),
 		defTask('watch-sass', 'watch', {
 			src: '*.{scss,css}', task: 'sass', cwd
 		}, ['sass']),
+		defTask('watch-scripts', 'scriptWatch', {
+			main: 'main.js', output: 'app.js', paths: [], dest
+		}),
 		defTask('jade', 'jade', {
 			src: '*.jade', dest, plumber: true, cwd
 		}),

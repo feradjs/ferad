@@ -17,6 +17,11 @@ function dest({ dest }, stream) {
 	return stream.pipe(gulp.dest(dest))
 }
 
+function logError(error) {
+	_.util.log(_.util.colors.red('ERROR'), error.message)
+	this.emit('end')
+}
+
 const _ = plugins()
-Object.assign(_, { src, emit, dest })
+Object.assign(_, { src, emit, dest, logError })
 export default _

@@ -17,7 +17,7 @@ function defaults(env, app, cwd) {
 			src: '*.{scss,css}', task: 'sass', cwd
 		}, ['sass']),
 		defTask('watch-scripts', 'scriptWatch', {
-			main: 'main.js', output: 'app.js', paths: [], dest
+			main: 'main.js', output: 'app.js', paths: [], dest, cwd
 		}),
 		defTask('assets', 'assets', {
 			src: assets, dest, cwd

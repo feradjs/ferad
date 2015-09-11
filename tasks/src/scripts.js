@@ -35,5 +35,8 @@ export default {
 		watch.on('update', bundle)
 		watch.on('log', _.util.log)
 		return bundle()
+	},
+	prod() {
+		process.env.NODE_ENV = 'production'
 	}
 }

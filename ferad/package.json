@@ -25,11 +25,14 @@
     "supervisor": "^0.7.1"
   },
   "dependencies": {
+    "chalk": "^1.1.1",
     "ferad-configs": "^1.0.0",
     "ferad-tasks": "^1.0.0",
     "ferad-utils": "^1.0.0",
     "gulp": "^3.9.0",
+    "gulp-util": "^3.0.6",
     "jsonfile": "^2.2.1",
+    "pretty-hrtime": "^1.0.0",
     "rc": "^1.1.1",
     "yargs": "^3.24.0"
   }

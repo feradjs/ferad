@@ -5,6 +5,8 @@ import yargs from 'yargs'
 import rc from 'rc'
 import json from 'jsonfile'
 import u from 'ferad-utils'
+import gulp from 'gulp'
+import gulpLog from './gulp-log'
 import execute from './execute'
 
 const env = rc('ferad', {
@@ -19,4 +21,5 @@ const configurator = require(env.configurator)
 const tasks = configurator(env, app, process.cwd())
 const task = u.normalize(yargs.argv._[0], 'default')
 
+gulpLog(gulp)
 execute(task, tasks)

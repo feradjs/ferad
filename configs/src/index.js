@@ -46,21 +46,12 @@ function defTask(name, func, options, depends) {
 	return task(name, 'ferad-tasks', func, options, depends)
 }
 function task(name, modul, func, options, depends = []) {
-	return {
-		name,
-		modul,
-		func,
-		options,
-		depends
-	}
+	return { name, modul, func, options, depends }
 }
 function group(name, depends) {
 	return {
-		name,
-		depends,
-		modul: 'ferad-configs',
-		func: 'emptyTask',
-		options: {}
+		name, modul: 'ferad-configs', func: 'emptyTask',
+		options: {}, depends
 	}
 }
 function emptyTask(o, cb) {

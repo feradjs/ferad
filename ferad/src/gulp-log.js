@@ -27,9 +27,9 @@ function formatError(e) {
 export default function logEvents(gulpInst) {
 
   // Total hack due to poor error management in orchestrator
-  gulpInst.on('err', function() {
+  /*gulpInst.on('err', function() {
     failed = true;
-  });
+  });*/
 
   gulpInst.on('task_start', function(e) {
     // TODO: batch these

@@ -13,5 +13,6 @@ export default {
 		_.watch(src, { cwd }, _.batch(
 			(events, done) => gulp.start(task, done)
 		))
+		cb()
 	}
 }

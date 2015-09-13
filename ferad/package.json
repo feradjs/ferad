@@ -6,8 +6,8 @@
   "scripts": {
     "prepublish": "rm -rf dist && babel src -d dist",
     "start": "babel-node src/main.js",
-    "watch": "babel -w src -d dist & supervisor -w dist dist/main.js",
-    "test": "mocha -r babel/register"
+    "test": "mocha -r babel/register",
+    "watch": "babel -w src -d dist"
   },
   "repository": {
     "type": "git",
@@ -21,8 +21,7 @@
   "homepage": "https://github.com/tserdyuk/ferad",
   "devDependencies": {
     "babel": "^5.8.23",
-    "mocha": "^2.3.0",
-    "supervisor": "^0.7.1"
+    "mocha": "^2.3.0"
   },
   "dependencies": {
     "chalk": "^1.1.1",

@@ -6,7 +6,7 @@
   "scripts": {
     "prepublish": "rm -rf dist && babel src -d dist",
     "test": "mocha -r babel/register",
-    "watch": "mocha -w -r babel/register"
+    "watch": "babel -w src -d dist"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,7 @@
 
 function defaults(env, app, cwd) {
-	const { port, assets, dest } = Object.assign({}, env, app)
+	const config = Object.assign({}, env, app)
+	const { port, assets, dest } = config
 	return [
 		group('default', ['serve', 'watch']),
 		defTask('serve', 'serve', {
@@ -16,9 +17,6 @@ function defaults(env, app, cwd) {
 		defTask('watch-sass', 'watch', {
 			src: '*.{scss,css}', task: 'sass', cwd
 		}, ['sass']),
-		defTask('watch-scripts', 'scriptWatch', {
-			main: 'main.js', output: 'app.js', paths: [], dest, cwd
-		}),
 		defTask('assets', 'assets', {
 			src: assets, dest, cwd
 		}),
@@ -28,7 +26,20 @@ function defaults(env, app, cwd) {
 		defTask('sass', 'sass', {
 			src: '*.{scss,css}', plumber: true, dest, cwd
 		})
-	]
+	].concat(
+		watchScripts(config, cwd)
+	)
+}
+
+function watchScripts({ scripts, paths, dest }, cwd) {
+	const tasks = []
+	for (let script in scripts) {
+		tasks.push(defTask('watch-' + script, 'scriptWatch', {
+			main: script, output: scripts[script], paths, dest, cwd
+		}))
+	}
+	tasks.push(group('watch-scripts', tasks.map(task => task.name)))
+	return tasks
 }
 
 function defTask(name, func, options, depends) {
@@ -57,5 +68,5 @@ function emptyTask(o, cb) {
 }
 
 export default {
-	defaults, defTask, task, group, emptyTask
+	defaults, watchScripts, defTask, task, group, emptyTask
 }

@@ -13,6 +13,10 @@ const env = rc('ferad', {
 	configurator: './configurator',
 	appConfig: 'app.json',
 	assets: ['assets/**/*', 'static/**/*'],
+	scripts: {
+		'main.js': 'app.js'
+	},
+	paths: [],
 	dest: 'dist',
 	port: 5000
 })

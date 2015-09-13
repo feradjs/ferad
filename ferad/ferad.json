@@ -1,0 +1,16 @@
+{
+  "configurator": "./configurator",
+  "appConfig": "app.json",
+  "app": {
+    "assets": [
+      "assets/**/*",
+      "static/**/*"
+    ],
+    "scripts": {
+      "main.js": "app.js"
+    },
+    "paths": [],
+    "dest": "dist",
+    "port": 5000
+  }
+}

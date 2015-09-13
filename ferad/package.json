@@ -5,9 +5,9 @@
   "bin": "dist/main.js",
   "scripts": {
     "prepublish": "rm -rf dist && babel src -d dist",
+    "compile": "babel -w src -d dist",
     "start": "babel-node src/main.js",
-    "test": "mocha -r babel/register",
-    "watch": "babel -w src -d dist"
+    "test": "mocha -r babel/register"
   },
   "repository": {
     "type": "git",

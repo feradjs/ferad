@@ -9,7 +9,7 @@ function defaults(env, app, cwd) {
 		group('watch', ['watch-assets', 'watch-jade', 'watch-sass', 'watch-scripts']),
 		defTask('watch-assets', 'watch', {
 			src: assets, task: 'assets', cwd
-		}),
+		}, ['assets']),
 		defTask('watch-jade', 'watch', {
 			src: '**/*.jade', task: 'jade', cwd
 		}, ['jade']),
@@ -47,12 +47,15 @@ function group(name, depends) {
 	return {
 		name,
 		depends,
-		modul: 'ferad-utils',
-		func: 'nop',
+		modul: 'ferad-configs',
+		func: 'emptyTask',
 		options: {}
 	}
 }
+function emptyTask(o, cb) {
+	cb()
+}
 
 export default {
-	defaults, defTask, task, group
+	defaults, defTask, task, group, emptyTask
 }

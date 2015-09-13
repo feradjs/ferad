@@ -10,6 +10,7 @@ import execute from './execute'
 const env = rc('ferad', {
 	configurator: './configurator',
 	appConfig: 'app.json',
+	assets: ['assets/**/*', 'static/**/*'],
 	dest: 'dist',
 	port: 5000
 })

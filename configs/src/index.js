@@ -9,7 +9,7 @@ function defaults(env, app, cwd) {
 		group('watch', ['watch-assets', 'watch-jade', 'watch-sass', 'watch-scripts']),
 		defTask('watch-assets', 'watch', {
 			src: assets, task: 'assets', cwd
-		})
+		}),
 		defTask('watch-jade', 'watch', {
 			src: '**/*.jade', task: 'jade', cwd
 		}, ['jade']),

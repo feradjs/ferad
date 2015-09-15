@@ -11,6 +11,7 @@ export default {
 	sass(o) {
 		return _.emit(o, _.src(o)
 			.pipe(_.sass())
+			.on('error', _.logError)
 			.pipe(_.minifyCss()))
 	}
 }

@@ -1,3 +1,4 @@
+import { Seq } from 'immutable'
 
 function defaults(env, app, cwd) {
 	const config = Object.assign({}, env, app)
@@ -40,14 +41,14 @@ function defaults(env, app, cwd) {
 }
 
 function scripts(func, prefix, { scripts, paths, dest }, cwd) {
-	const tasks = []
-	for (let script in scripts) {
-		tasks.push(defTask(prefix + script, func, {
-			main: script, output: scripts[script], paths, dest, cwd
-		}))
-	}
-	tasks.push(group(prefix + 'scripts', tasks.map(task => task.name)))
-	return tasks
+	return Seq(scripts)
+		.mapEntries(([main, output]) => [main,
+			defTask(prefix + main, func, {
+				main, output, paths, dest, cwd
+			})]
+		).toArray().concat([
+			group(prefix + 'scripts', Seq(scripts).keySeq().toArray())
+		])
 }
 
 function defTask(name, func, options, depends) {

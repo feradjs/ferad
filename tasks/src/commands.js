@@ -3,8 +3,8 @@ import del from 'del'
 import _ from './common'
 
 export default {
-	clean({ dest }, cb) {
-		del(dest, { force: true }, cb)
+	clean({ dest, cwd }, cb) {
+		del(dest, { force: true, cwd }, cb)
 	},
 	serve(o) {
 		_.connect.server(o)

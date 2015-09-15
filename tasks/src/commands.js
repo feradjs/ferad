@@ -10,9 +10,9 @@ export default {
 		_.connect.server(o)
 	},
 	watch({ src, task, cwd }, cb, gulp) {
-		_.watch(src, { cwd }, _.batch(
-			(events, done) => gulp.start(task, done)
-		))
+		_.watch(src, { cwd }, () =>
+			gulp.start(task)
+		)
 		cb()
 	}
 }

@@ -18,7 +18,7 @@ function dest({ dest }, stream) {
 }
 
 function logError(error) {
-	_.util.log(_.util.colors.red('ERROR'), error.message)
+	_.util.log('[' + _.util.colors.red('ERROR') + ']', error.message)
 	this.emit('end')
 }
 

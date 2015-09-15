@@ -37,7 +37,8 @@ export default {
 		watch.on('log', _.util.log)
 		return bundle()
 	},
-	prod() {
-		process.env.NODE_ENV = 'production'
+	env({ prop, value }, cb) {
+		process.env[prop] = value
+		cb()
 	}
 }

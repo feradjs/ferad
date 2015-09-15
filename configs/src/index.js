@@ -34,18 +34,19 @@ function defaults(env, app, cwd) {
 			src: '*.{scss,css}', plumber: true, dest, cwd
 		})
 	].concat(
-		watchScripts(config, cwd)
+		scripts('script', '', config, cwd),
+		scripts('scriptWatch', 'watch-', config, cwd)
 	)
 }
 
-function watchScripts({ scripts, paths, dest }, cwd) {
+function scripts(func, prefix, { scripts, paths, dest }, cwd) {
 	const tasks = []
 	for (let script in scripts) {
-		tasks.push(defTask('watch-' + script, 'scriptWatch', {
+		tasks.push(defTask(prefix + script, func, {
 			main: script, output: scripts[script], paths, dest, cwd
 		}))
 	}
-	tasks.push(group('watch-scripts', tasks.map(task => task.name)))
+	tasks.push(group(prefix + 'scripts', tasks.map(task => task.name)))
 	return tasks
 }
 
@@ -66,5 +67,5 @@ function emptyTask(o, cb) {
 }
 
 export default {
-	defaults, watchScripts, defTask, task, group, emptyTask
+	defaults, scripts, defTask, task, group, emptyTask
 }

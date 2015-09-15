@@ -8,9 +8,12 @@ function defaults(env, app, cwd) {
 		defTask('serve', 'serve', {
 			port, root: dest, livereload: true
 		}),
-		group('build', ['assets', 'jade-prod', 'sass-prod', 'scripts']),
+		group('build', ['assets-prod', 'jade-prod', 'sass-prod', 'scripts']),
 		defTask('prod', 'env', {
 			prop: 'NODE_ENV', value: 'production'
+		}, ['clean']),
+		defTask('clean', 'clean', {
+			dest, cwd
 		}),
 		group('watch', ['watch-assets', 'watch-jade', 'watch-sass', 'watch-scripts']),
 		defTask('watch-assets', 'watch', {
@@ -22,18 +25,21 @@ function defaults(env, app, cwd) {
 		defTask('watch-sass', 'watch', {
 			src: '*.{scss,css}', task: 'sass', cwd
 		}, ['sass']),
+		defTask('assets-prod', 'assets', {
+			src: assets, dest, cwd
+		}, ['prod']),
 		defTask('assets', 'assets', {
 			src: assets, dest, cwd
 		}),
 		defTask('jade-prod', 'jade', {
 			src: '*.jade', plumber: false, dest, cwd
-		}),
+		}, ['prod']),
 		defTask('jade', 'jade', {
 			src: '*.jade', plumber: true, dest, cwd
 		}),
 		defTask('sass-prod', 'sassProd', {
 			src: '*.{scss,css}', dest, cwd
-		}),
+		}, ['prod']),
 		defTask('sass', 'sass', {
 			src: '*.{scss,css}', dest, cwd
 		})

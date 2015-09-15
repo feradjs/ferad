@@ -4,7 +4,8 @@ import _ from './common'
 
 export default {
 	clean({ dest, cwd }, cb) {
-		del(dest, { force: true, cwd }, cb)
+		del(dest, { force: true, cwd })
+			.then(() => cb())
 	},
 	serve(o) {
 		_.connect.server(o)

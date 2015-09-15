@@ -9,7 +9,6 @@ import gulpLog from './gulp-log'
 import execute from './execute'
 
 const env = rc('ferad', require('../ferad.json'))
-console.log(rc('ferad', require('../ferad.json')))
 const app = json.readFileSync(env.appConfig, { throws: false })
 const configurator = require(env.configurator)
 const tasks = configurator(env, app, process.cwd())

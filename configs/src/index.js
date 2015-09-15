@@ -9,6 +9,9 @@ function defaults(env, app, cwd) {
 			port, root: dest, livereload: true
 		}),
 		group('build', ['assets', 'jade-prod', 'sass-prod', 'scripts']),
+		defTask('prod', 'env', {
+			prop: 'NODE_ENV', value: 'production'
+		}),
 		group('watch', ['watch-assets', 'watch-jade', 'watch-sass', 'watch-scripts']),
 		defTask('watch-assets', 'watch', {
 			src: assets, task: 'assets', cwd
@@ -35,17 +38,17 @@ function defaults(env, app, cwd) {
 			src: '*.{scss,css}', plumber: true, dest, cwd
 		})
 	].concat(
-		scripts('script', '', config, cwd),
-		scripts('scriptWatch', 'watch-', config, cwd)
+		scripts('script', '', ['prod'], config, cwd),
+		scripts('scriptWatch', 'watch-', [], config, cwd)
 	)
 }
 
-function scripts(func, prefix, { scripts, paths, dest }, cwd) {
+function scripts(func, prefix, depends, { scripts, paths, dest }, cwd) {
 	return Seq(scripts)
 		.mapEntries(([main, output]) => [main,
 			defTask(prefix + main, func, {
 				main, output, paths, dest, cwd
-			})]
+			}, depends)]
 		).toArray().concat([
 			group(prefix + 'scripts', Seq(scripts).keySeq().toArray())
 		])

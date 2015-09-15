@@ -31,11 +31,11 @@ function defaults(env, app, cwd) {
 		defTask('jade', 'jade', {
 			src: '*.jade', plumber: true, dest, cwd
 		}),
-		defTask('sass-prod', 'sass', {
-			src: '*.{scss,css}', plumber: false, dest, cwd
+		defTask('sass-prod', 'sassProd', {
+			src: '*.{scss,css}', dest, cwd
 		}),
 		defTask('sass', 'sass', {
-			src: '*.{scss,css}', plumber: true, dest, cwd
+			src: '*.{scss,css}', dest, cwd
 		})
 	].concat(
 		scripts('script', '', ['prod'], config, cwd),

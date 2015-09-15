@@ -1,8 +1,8 @@
 import { Seq } from 'immutable'
 
-function defaults(env, app, cwd) {
+function defaults({ port, app: env }, app, cwd) {
 	const config = Object.assign({}, env, app)
-	const { port, assets, dest } = config
+	const { assets, dest } = config
 	return [
 		group('default', ['serve', 'watch']),
 		defTask('serve', 'serve', {

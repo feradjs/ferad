@@ -10,7 +10,7 @@
       "main.js": "app.js"
     },
     "paths": [],
-    "dest": "dist",
-    "port": 5000
-  }
+    "dest": "dist"
+  },
+  "port": 5000
 }

@@ -12,7 +12,7 @@ import execute from './execute'
 const env = rc('ferad', require('../ferad.json'))
 const app = json.readFileSync(env.appConfig, { throws: false })
 const configurator = require(env.configurator)
-const tasks = configurator(env.app, app, process.cwd())
+const tasks = configurator(env, app, process.cwd())
 const task = u.normalize(yargs.argv._[0], 'default')
 
 gulpLog(gulp)

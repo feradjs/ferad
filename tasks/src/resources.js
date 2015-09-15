@@ -1,3 +1,5 @@
+import fs from 'fs'
+import path from 'path'
 import _ from './common'
 
 export default {
@@ -6,6 +8,15 @@ export default {
 	},
 	jade(o) {
 		return _.emit(o, _.src(o)
+			.pipe(_.data((file) => {
+				let data = null
+				const { dir, name } = path.parse(file.path)
+				try {
+					data = fs.readFileSync(`${dir}/${name}.json`)
+				} catch (error) {
+				}
+				return JSON.parse(data)
+			}))
 			.pipe(_.jade()))
 	},
 	sass(o) {

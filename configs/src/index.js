@@ -20,7 +20,7 @@ function defaults({ port, app: env }, app, cwd) {
 			src: assets, task: 'assets', cwd
 		}, ['assets']),
 		defTask('watch-jade', 'watch', {
-			src: '**/*.jade', task: 'jade', cwd
+			src: ['**/*.jade', '*.json'], task: 'jade', cwd
 		}, ['jade']),
 		defTask('watch-sass', 'watch', {
 			src: '*.{scss,css}', task: 'sass', cwd

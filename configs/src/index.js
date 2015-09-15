@@ -44,14 +44,16 @@ function defaults(env, app, cwd) {
 }
 
 function scripts(func, prefix, depends, { scripts, paths, dest }, cwd) {
-	return Seq(scripts)
-		.mapEntries(([main, output]) => [main,
+	const tasks = Seq(scripts)
+		.mapEntries(([main, output]) => [
+			prefix + main,
 			defTask(prefix + main, func, {
 				main, output, paths, dest, cwd
-			}, depends)]
-		).toArray().concat([
-			group(prefix + 'scripts', Seq(scripts).keySeq().toArray())
+			}, depends)
 		])
+	return tasks.toArray().concat([
+		group(prefix + 'scripts', tasks.keySeq().toArray())
+	])
 }
 
 function defTask(name, func, options, depends) {

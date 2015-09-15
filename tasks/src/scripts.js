@@ -40,5 +40,9 @@ export default {
 	env({ prop, value }, cb) {
 		process.env[prop] = value
 		cb()
+	},
+	log({ message }, cb) {
+		console.log(message)
+		cb()
 	}
 }

@@ -17,7 +17,7 @@ export default {
 				}
 				return JSON.parse(data)
 			}))
-			.pipe(_.jade()))
+			.pipe(_.jade({ pretty: o.pretty })))
 	},
 	sass(o) {
 		return _.emit(o, _.src(o)

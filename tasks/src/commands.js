@@ -11,9 +11,10 @@ export default {
 		_.connect.server(o)
 	},
 	watch({ src, task, cwd }, cb, gulp) {
-		_.watch(src, { cwd }, () =>
+		_.watch(src, { cwd }, ({ path }) => {
+			console.log(path)
 			gulp.start(task)
-		)
+		})
 		cb()
 	}
 }

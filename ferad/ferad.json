@@ -7,7 +7,8 @@
       "assets/**/*",
       "static/**/*"
     ],
-    "paths": []
+    "paths": [],
+    "jadeLocals": "jade.json"
   },
   "port": 5000
 }

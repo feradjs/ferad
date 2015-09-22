@@ -6,7 +6,7 @@ function defaults({ root, port, app: env }, app, cwd) {
 	app = app || {}
 	const config = Object.assign({}, env, app)
 	const dest = config.dest || (homedir() + '/.ferad/dist')
-	const { assets } = config
+	const { assets, jadeLocals: locals } = config
 	return [
 		group('default', ['serve', 'watch']),
 		defTask('serve', 'serve', {
@@ -36,10 +36,10 @@ function defaults({ root, port, app: env }, app, cwd) {
 			src: assets, dest, cwd
 		}),
 		defTask('jade-prod', 'jade', {
-			src: '[^_]**/[^_]*.jade', plumber: false, dest, cwd
+			src: '[^_]**/[^_]*.jade', plumber: false, locals, dest, cwd
 		}, ['prod']),
 		defTask('jade', 'jade', {
-			src: '[^_]**/[^_]*.jade', plumber: true, dest, cwd
+			src: '[^_]**/[^_]*.jade', plumber: true, locals, dest, cwd
 		}),
 		defTask('sass-prod', 'sassProd', {
 			src: '[^_]**/[^_]*.{scss,css}', dest, cwd

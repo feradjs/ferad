@@ -7,16 +7,14 @@ export default {
 		return _.emit(o, _.src(o))
 	},
 	jade(o) {
+		var locals = {}
+		try {
+			locals = JSON.parse(
+				fs.readFileSync(o.cwd + '/' + o.locals)
+			)
+		} catch (error) {}
 		return _.emit(o, _.src(o)
-			.pipe(_.data((file) => {
-				let data = null
-				const { dir, name } = path.parse(file.path)
-				try {
-					data = fs.readFileSync(`${dir}/${name}.json`)
-				} catch (error) {
-				}
-				return JSON.parse(data)
-			}))
+			.pipe(_.data(() => locals))
 			.pipe(_.jade({ pretty: o.pretty })))
 	},
 	sass(o) {

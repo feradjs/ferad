@@ -1,6 +1,7 @@
 import { Seq } from 'immutable'
 
 function defaults({ root, port, app: env }, app, cwd) {
+	app = app || {}
 	const config = Object.assign({}, env, app)
 	const { assets, dest } = config
 	return [

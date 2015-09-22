@@ -11,7 +11,7 @@ const env = rc('ferad', require('../ferad.json'))
 const app = json.readFileSync(env.appConfig, { throws: false })
 const configurator = require(env.configurator)
 const tasks = configurator(env, app, process.cwd())
-const task = env._ || 'default'
+const task = env._[0] || 'default'
 
 gulpLog(gulp)
 execute(task, tasks)

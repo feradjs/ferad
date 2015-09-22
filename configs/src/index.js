@@ -1,3 +1,4 @@
+import glob from 'glob'
 import { Seq } from 'immutable'
 
 function defaults({ root, port, app: env }, app, cwd) {
@@ -51,6 +52,10 @@ function defaults({ root, port, app: env }, app, cwd) {
 }
 
 function scripts(func, prefix, depends, { scripts, paths, dest }, cwd) {
+	if (!scripts) {
+		scripts = Seq(glob.sync('*.js', { cwd }))
+			.toSetSeq().toObject()
+	}
 	const tasks = Seq(scripts)
 		.mapEntries(([main, output]) => [
 			prefix + main,

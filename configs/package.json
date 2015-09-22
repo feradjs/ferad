@@ -23,6 +23,7 @@
     "mocha": "^2.3.0"
   },
   "dependencies": {
+    "glob": "^5.0.14",
     "immutable": "^3.7.5"
   }
 }

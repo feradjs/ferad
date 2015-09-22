@@ -36,16 +36,16 @@ function defaults({ root, port, app: env }, app, cwd) {
 			src: assets, dest, cwd
 		}),
 		defTask('jade-prod', 'jade', {
-			src: '[^_]**/[^_]*.jade', plumber: false, locals, dest, cwd
+			src: '([^_]**/|)[^_]*.jade', plumber: false, locals, dest, cwd
 		}, ['prod']),
 		defTask('jade', 'jade', {
-			src: '[^_]**/[^_]*.jade', plumber: true, locals, dest, cwd
+			src: '([^_]**/|)[^_]*.jade', plumber: true, locals, dest, cwd
 		}),
 		defTask('sass-prod', 'sassProd', {
-			src: '[^_]**/[^_]*.{scss,css}', dest, cwd
+			src: '([^_]**/|)[^_]*.{scss,css}', dest, cwd
 		}, ['prod']),
 		defTask('sass', 'sass', {
-			src: '[^_]**/[^_]*.{scss,css}', dest, cwd
+			src: '([^_]**/|)[^_]*.{scss,css}', dest, cwd
 		})
 	].concat(
 		scripts('script', '', ['prod'], config, cwd),

@@ -6,8 +6,7 @@
       "assets/**/*",
       "static/**/*"
     ],
-    "paths": [],
-    "dest": "dist"
+    "paths": []
   },
   "port": 5000
 }

@@ -1,10 +1,12 @@
 import glob from 'glob'
+import homedir from 'os-homedir'
 import { Seq } from 'immutable'
 
 function defaults({ root, port, app: env }, app, cwd) {
 	app = app || {}
 	const config = Object.assign({}, env, app)
-	const { assets, dest } = config
+	const dest = config.dest || (homedir() + '/.ferad/dist')
+	const { assets } = config
 	return [
 		group('default', ['serve', 'watch']),
 		defTask('serve', 'serve', {

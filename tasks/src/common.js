@@ -10,8 +10,8 @@ function emit(o, stream) {
 	return dest(o, stream)
 		.pipe(_.connect.reload())
 }
-function dest({ dest }, stream) {
-	return stream.pipe(gulp.dest(dest))
+function dest({ dest, cwd }, stream) {
+	return stream.pipe(gulp.dest(dest, { cwd }))
 }
 
 function fail(error) {

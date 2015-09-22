@@ -23,7 +23,6 @@
     "mocha": "^2.3.0"
   },
   "dependencies": {
-    "ferad-utils": "^1.0.0",
     "immutable": "^3.7.5"
   }
 }

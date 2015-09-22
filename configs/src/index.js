@@ -1,5 +1,4 @@
 import { Seq } from 'immutable'
-import u from 'ferad-utils'
 
 function defaults({ root, port, app: env }, app, cwd) {
 	const config = Object.assign({}, env, app)
@@ -7,7 +6,7 @@ function defaults({ root, port, app: env }, app, cwd) {
 	return [
 		group('default', ['serve', 'watch']),
 		defTask('serve', 'serve', {
-			port, root: u.normalize(app.serveRoot, dest), livereload: true
+			port, root: app.serveRoot || dest, livereload: true
 		}),
 		group('build', ['assets-prod', 'jade-prod', 'sass-prod', 'scripts']),
 		defTask('prod', 'env', {

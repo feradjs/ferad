@@ -3,6 +3,7 @@
   "appConfig": "app.json",
   "app": {
     "assets": [
+      "**/*.html",
       "assets/**/*",
       "static/**/*"
     ],

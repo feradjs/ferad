@@ -35,22 +35,20 @@ function defaults({ root, port, app: env }, app, cwd) {
 		defTask('assets', 'assets', {
 			src: assets, dest, cwd
 		}),
-		defTask('jade-prod', 'jade', {
-			src: '([^_]**/|)[^_]*.jade', plumber: false, locals, dest, cwd
-		}, ['prod']),
-		defTask('jade', 'jade', {
-			src: '([^_]**/|)[^_]*.jade', plumber: true, locals, dest, cwd
-		}),
-		defTask('sass-prod', 'sassProd', {
-			src: '([^_]**/|)[^_]*.{scss,css}', dest, cwd
-		}, ['prod']),
-		defTask('sass', 'sass', {
-			src: '([^_]**/|)[^_]*.{scss,css}', dest, cwd
-		})
+		defTask('jade-prod', 'jade', resource('jade', { plumber: false, locals }), ['prod']),
+		defTask('jade', 'jade', resource('jade', { plumber: true, locals })),
+		defTask('sass-prod', 'sassProd', resource('{scss,css}'), ['prod']),
+		defTask('sass', 'sass', resource('{scss,css}'))
 	].concat(
 		scripts('script', '', ['prod'], config, cwd),
 		scripts('scriptWatch', 'watch-', [], config, cwd)
 	)
+	function resource(ext, options) {
+		return Object.assign({
+			src: ['[^_]*.' + ext, '[^_]**/[^_]*.' + ext],
+			dest, cwd
+		}, options)
+	}
 }
 
 function scripts(func, prefix, depends, { scripts, paths, dest }, cwd) {

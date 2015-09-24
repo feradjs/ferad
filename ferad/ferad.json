@@ -8,7 +8,7 @@
       "static/**/*"
     ],
     "paths": [],
-    "jadeLocals": "jade.json"
+    "jadeLocals": "locals.json"
   },
   "port": 5000
 }

@@ -27,7 +27,7 @@ function defaults({ root, port, app: env }, app, cwd) {
 			src: ['**/*.jade', '*.json'], task: 'jade', cwd
 		}, ['jade']),
 		defTask('watch-sass', 'watch', {
-			src: '**/*.{scss,css}', task: 'sass', cwd
+			src: '**/*.{sass,scss}', task: 'sass', cwd
 		}, ['sass']),
 		defTask('assets-prod', 'assets', {
 			src: assets, dest, cwd
@@ -37,8 +37,8 @@ function defaults({ root, port, app: env }, app, cwd) {
 		}),
 		defTask('jade-prod', 'jade', resource('jade', { plumber: false, locals }), ['prod']),
 		defTask('jade', 'jade', resource('jade', { plumber: true, locals })),
-		defTask('sass-prod', 'sassProd', resource('{scss,css}'), ['prod']),
-		defTask('sass', 'sass', resource('{scss,css}'))
+		defTask('sass-prod', 'sassProd', resource('{sass,scss}'), ['prod']),
+		defTask('sass', 'sass', resource('{sass,scss}'))
 	].concat(
 		scripts('script', '', ['prod'], config, cwd),
 		scripts('scriptWatch', 'watch-', [], config, cwd)

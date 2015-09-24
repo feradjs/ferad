@@ -5,8 +5,8 @@ import { Seq } from 'immutable'
 function defaults({ root, port, app: env }, app, cwd) {
 	app = app || {}
 	const config = Object.assign({}, env, app)
-	const dest = config.dest || (homedir() + '/.ferad/dist')
-	const { assets, jadeLocals: locals } = config
+	config.dest = config.dest || (homedir() + '/.ferad/dist')
+	const { dest, assets, jadeLocals: locals } = config
 	return [
 		group('default', ['serve', 'watch']),
 		defTask('serve', 'serve', {

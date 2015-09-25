@@ -38,7 +38,7 @@ function defaults({ root, port, app: env }, app, cwd) {
 		defTask('jade-prod', 'jade', resource('jade', { plumber: false, locals }), ['prod']),
 		defTask('jade', 'jade', resource('jade', { plumber: true, locals })),
 		defTask('sass-prod', 'sassProd', resource('{sass,scss}'), ['prod']),
-		defTask('sass', 'sass', resource('{sass,scss}'))
+		defTask('sass', 'sass', resource('{sass,scss}', { plumber: true }))
 	].concat(
 		scripts('script', '', ['prod'], config, cwd),
 		scripts('scriptWatch', 'watch-', [], config, cwd)

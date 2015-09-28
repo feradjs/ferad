@@ -45,7 +45,7 @@ function defaults({ root, port, app: env }, app, cwd) {
 	)
 	function resource(ext, options) {
 		return Object.assign({
-			src: ['[^_]*.' + ext, '[^_]**/[^_]*.' + ext],
+			src: ['[^_]*.' + ext, '**/[^_]**/[^_]*.' + ext],
 			dest, cwd
 		}, options)
 	}

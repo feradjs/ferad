@@ -1,15 +1,13 @@
 {
   "configurator": "./configurator",
   "appConfig": "app.json",
-  "app": {
-    "assets": [
-      "**/*.css",
-      "**/*.html",
-      "assets/**/*",
-      "static/**/*"
-    ],
-    "paths": [],
-    "jadeLocals": "locals.json"
-  },
+  "assets": [
+    "**/*.css",
+    "**/*.html",
+    "assets/**/*",
+    "static/**/*"
+  ],
+  "paths": [],
+  "jadeLocals": "locals.json",
   "port": 5000
 }

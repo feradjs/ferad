@@ -2,15 +2,14 @@ import glob from 'glob'
 import homedir from 'os-homedir'
 import { Seq } from 'immutable'
 
-function defaults({ root, port, app: env }, app, cwd) {
-	app = app || {}
+function defaults(env, app, cwd) {
 	const config = Object.assign({}, env, app)
 	config.dest = config.dest || (homedir() + '/.ferad/dist')
-	const { dest, assets, jadeLocals: locals } = config
+	const { port, serveRoot, dest, assets, jadeLocals: locals } = config
 	return [
 		group('default', ['serve', 'watch']),
 		defTask('serve', 'serve', {
-			port, root: app.serveRoot || dest, livereload: true
+			port, root: serveRoot || dest, livereload: true
 		}),
 		group('build', ['assets-prod', 'jade-prod', 'sass-prod', 'scripts']),
 		defTask('prod', 'env', {

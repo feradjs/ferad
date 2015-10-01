@@ -43,7 +43,8 @@ function defaults(env, app, cwd) {
 		}),
 		defTask('deploy', 'rsync', {
 			target: config.deploy, dest, cwd
-		}, ['build'])
+		}, ['build']),
+		defTask('render', 'template', config)
 	].concat(
 		scripts('script', '', ['prod'], config, cwd),
 		scripts('scriptWatch', 'watch-', [], config, cwd)

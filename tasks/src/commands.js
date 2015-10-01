@@ -1,5 +1,6 @@
 import gulp from 'gulp'
 import del from 'del'
+import Rsync from 'rsync'
 import _ from './common'
 
 export default {
@@ -16,5 +17,17 @@ export default {
 			gulp.start(task)
 		})
 		cb()
+	},
+	rsync({ target, dest }, cb) {
+		new Rsync()
+			.archive()
+			.delete()
+			.compress()
+			.progress()
+			.source(dest)
+			.destination(target)
+			.execute(function(error, code, cmd) {
+				cb(error)
+			})
 	}
 }

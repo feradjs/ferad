@@ -37,7 +37,13 @@ function defaults(env, app, cwd) {
 		defTask('jade-prod', 'jade', resource('jade', { plumber: false, locals }), ['prod']),
 		defTask('jade', 'jade', resource('jade', { plumber: true, locals })),
 		defTask('sass-prod', 'sassProd', resource('{sass,scss}'), ['prod']),
-		defTask('sass', 'sass', resource('{sass,scss}', { plumber: true }))
+		defTask('sass', 'sass', resource('{sass,scss}', { plumber: true })),
+		defTask('sync', 'rsync', {
+			target: config.sync, dest, cwd
+		}),
+		defTask('deploy', 'rsync', {
+			target: config.deploy, dest, cwd
+		}, ['build'])
 	].concat(
 		scripts('script', '', ['prod'], config, cwd),
 		scripts('scriptWatch', 'watch-', [], config, cwd)

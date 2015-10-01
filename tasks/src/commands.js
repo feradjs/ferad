@@ -5,6 +5,8 @@ import mustache from 'mustache'
 import fs from 'fs'
 import _ from './common'
 
+mustache.escape = data => data
+
 export default {
 	clean({ dest, cwd }, cb) {
 		del(dest, { force: true, cwd })

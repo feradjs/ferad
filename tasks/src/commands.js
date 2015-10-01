@@ -24,7 +24,7 @@ export default {
 			.delete()
 			.compress()
 			.progress()
-			.source(dest)
+			.source(dest + '/')
 			.destination(target)
 			.execute((error, code, cmd) => { cb(error) },
 				data => console.log(data.toString('utf8'))

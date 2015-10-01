@@ -26,8 +26,8 @@ export default {
 			.progress()
 			.source(dest)
 			.destination(target)
-			.execute(function(error, code, cmd) {
-				cb(error)
-			})
+			.execute((error, code, cmd) => { cb(error) },
+				data => console.log(data.toString('utf8'))
+			)
 	}
 }

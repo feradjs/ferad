@@ -20,11 +20,13 @@ export default {
 	sass(o) {
 		return _.emit(o, _.src(o)
 			.pipe(_.sass())
+			.pipe(_.autoprefixer())
 			.on('error', _.logError))
 	},
 	sassProd(o) {
 		return _.dest(o, _.src(o)
 			.pipe(_.sass())
+			.pipe(_.autoprefixer())
 			.pipe(_.minifyCss()))
 	}
 }

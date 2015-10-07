@@ -5,7 +5,8 @@
     "**/*.css",
     "**/*.html",
     "assets/**/*",
-    "static/**/*"
+    "static/**/*",
+    "robots.txt"
   ],
   "paths": [],
   "jadeLocals": "locals.json",

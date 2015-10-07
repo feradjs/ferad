@@ -23,7 +23,7 @@ function defaults(env, app, cwd) {
 			src: assets, task: 'assets', cwd
 		}, ['assets']),
 		defTask('watch-jade', 'watch', {
-			src: ['**/*.jade', '*.json'], task: 'jade', cwd
+			src: ['**/*.jade', '**/_*.html', '*.json'], task: 'jade', cwd
 		}, ['jade']),
 		defTask('watch-sass', 'watch', {
 			src: '**/*.{sass,scss}', task: 'sass', cwd

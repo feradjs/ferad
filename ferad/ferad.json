@@ -2,8 +2,8 @@
   "configurator": "./configurator",
   "appConfig": "app.json",
   "assets": [
-    "**/*.css",
-    "**/*.html",
+    "**/[^_]*.css",
+    "**/[^_]*.html",
     "assets/**/*",
     "static/**/*",
     "robots.txt"

@@ -1,5 +1,6 @@
 import gulp from 'gulp'
 import plugins from 'gulp-load-plugins'
+import notifier from 'node-notifier'
 
 function src({ src, cwd, plumber = false }) {
 	return gulp.src(src, { cwd })
@@ -24,6 +25,7 @@ function logError(error) {
 }
 function viewError(error) {
 	_.util.log('[' + _.util.colors.red('ERROR') + ']', error.message)
+	notifier.notify({ title: 'Error!', message: error.message })
 }
 
 const _ = plugins()

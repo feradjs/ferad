@@ -3,8 +3,8 @@ import plugins from 'gulp-load-plugins'
 
 function src({ src, cwd, plumber = false }) {
 	return gulp.src(src, { cwd })
-		.pipe(_.plumber(plumber ?
-			null : { errorHandler: fail }))
+		.pipe(_.plumber({ errorHandler:
+			plumber ? viewError : fail }))
 }
 function emit(o, stream) {
 	return dest(o, stream)
@@ -19,8 +19,11 @@ function fail(error) {
 	process.exit(1)
 }
 function logError(error) {
-	_.util.log('[' + _.util.colors.red('ERROR') + ']', error.message)
+	viewError(error)
 	this.emit('end')
+}
+function viewError(error) {
+	_.util.log('[' + _.util.colors.red('ERROR') + ']', error.message)
 }
 
 const _ = plugins()

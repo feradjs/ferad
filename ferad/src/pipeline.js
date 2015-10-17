@@ -7,7 +7,7 @@ export default function pipeline(command, config) {
 		sequence,
 		tasks: sequence.map(task => {
 			const [func, ...buckets] = task.split(':')
-			buckets.push('default')
+			buckets.unshift('default')
 			const options = Object.assign.apply(null,
 				buckets.map(bucket => config[':' + bucket])
 			)

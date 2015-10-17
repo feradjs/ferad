@@ -24,6 +24,14 @@ describe('pipeline', () => {
 				task('a:1', 'a', { value: 1 })
 			]
 		)
+		test('defaulted',
+			'a:1', {
+				':default': { x: 0, y: 0 },
+				':1': { x: 1},
+			}, ['a:1'], [
+				task('a:1', 'a', { x: 1, y: 0 })
+			]
+		)
 		test('multiple',
 			'a:1:2:3', {
 				':1': { x: 1, y: 1, z: 1 },

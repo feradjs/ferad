@@ -4,10 +4,12 @@ export default function pipeline(command, config) {
 		.split(' ').join('').split('->')
 	return {
 		sequence,
-		tasks: sequence.map(name => { return {
-			name,
-			func: name,
-			options: config[':default'] || {}
-		}})
+		tasks: sequence.map((task) => {
+			const [func, ...options] = task.split(':')
+			return {
+				name: task, func,
+				options: config[':' + options[0]] || config[':default'] || {}
+			}
+		})
 	}
 }

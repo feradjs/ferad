@@ -9,13 +9,22 @@ describe('pipeline', () => {
 			task('b', 'b')
 		]
 	)
-	test('default options',
-		'a', {
-			':default': { value: 1 }
-		}, ['a'], [
-			task('a', 'a', { value: 1 })
-		]
-	)
+	describe('options', () => {
+		test('default',
+			'a', {
+				':default': { value: 0 }
+			}, ['a'], [
+				task('a', 'a', { value: 0 })
+			]
+		)
+		test('single',
+			'a:1', {
+				':1': { value: 1 },
+			}, ['a:1'], [
+				task('a:1', 'a', { value: 1 })
+			]
+		)
+	})
 })
 
 function test(name, command, config, sequence, tasks) {

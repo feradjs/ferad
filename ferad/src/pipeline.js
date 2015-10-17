@@ -19,7 +19,7 @@ export default function pipeline(command, config) {
 			result.name = command
 			return result
 		}
-		return { name: command, func: task, options }
+		return { type: 'task', name: command, func: task, options }
 		function getBuckets(names) {
 			return names.map(name => {
 				const bucket = config[':' + name]

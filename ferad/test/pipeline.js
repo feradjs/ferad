@@ -33,6 +33,10 @@ describe('pipeline', () => {
 				task('a', 'task', { value: 1 })
 			]
 		)
+		// Options sharing
+		// Unused options
+		// Task groups
+		// Shell commands
 	})
 	describe('options', () => {
 		testOptions('default',
@@ -109,6 +113,14 @@ function test(name, command, config, sequence, tasks) {
 	))
 }
 
+function seq(name, sequence, tasks) {
+	return { type: 'sequence', name, tasks }
+}
+
 function task(name, func, options = {}) {
-	return { name, func, options }
+	return { type: 'task', name, func, options }
+}
+
+function shell(name, commands) {
+	return { type: 'shell', name, commands }
 }

@@ -24,6 +24,17 @@ describe('pipeline', () => {
 				task('a:1', 'a', { value: 1 })
 			]
 		)
+		test('multiple',
+			'a:1:2:3', {
+				':1': { x: 1, y: 1, z: 1 },
+				':2': { x: 2, y: 2 },
+				':3': { x: 3 }
+			}, ['a:1:2:3'], [
+				task('a:1:2:3', 'a', { x: 3, y: 2, z: 1 })
+			]
+		)
+		// Nested
+		// Error
 	})
 })
 

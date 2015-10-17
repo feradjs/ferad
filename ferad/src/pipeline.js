@@ -2,14 +2,16 @@
 export default function pipeline(command, config) {
 	const sequence = command
 		.split(' ').join('').split('->')
+	config = Object.assign({ ':default': {} }, config)
 	return {
 		sequence,
-		tasks: sequence.map((task) => {
-			const [func, ...options] = task.split(':')
-			return {
-				name: task, func,
-				options: config[':' + options[0]] || config[':default'] || {}
-			}
+		tasks: sequence.map(task => {
+			const [func, ...buckets] = task.split(':')
+			buckets.push('default')
+			const options = Object.assign.apply(null,
+				buckets.map(bucket => config[':' + bucket])
+			)
+			return { name: task, func, options }
 		})
 	}
 }

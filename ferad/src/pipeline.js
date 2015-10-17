@@ -19,7 +19,7 @@ export default function pipeline(command, config) {
 			}
 			buckets.unshift('default')
 			const options = Object.assign.apply(null,
-				_.flattenDeep(getBuckets(buckets))
+				_.flattenDeep([{}, getBuckets(buckets)])
 			)
 			return { name: task, func, options }
 		})

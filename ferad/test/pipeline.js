@@ -46,6 +46,13 @@ describe('pipeline', () => {
 				':g': ':1:2'
 			}, { x: 2, y: 1 }
 		)
+		testOptions('group whitespaces',
+			':g', {
+				':1': { x: 1 },
+				':2': { y: 1 },
+				':g': ' :1 :2 '
+			}, { x: 1, y: 1 }
+		)
 		testOptions('nested group',
 			':g', {
 				':1': { x: 1 },

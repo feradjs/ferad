@@ -1,8 +1,7 @@
 import _ from 'lodash'
 
 export default function pipeline(command, config) {
-	const sequence = command
-		.split(' ').join('').split('->')
+	const sequence = removeWhitespaces(command).split('->')
 	config = Object.assign({ ':default': {} }, config)
 	return {
 		sequence,
@@ -14,7 +13,8 @@ export default function pipeline(command, config) {
 					if (_.isUndefined(bucket))
 						throw new Error(`No option bucket ":${name}" defined for "${func}" task!`)
 					return _.isString(bucket) ?
-						getBuckets(bucket.split(':').slice(1)) : bucket
+						getBuckets(removeWhitespaces(bucket)
+							.split(':').slice(1)) : bucket
 				})
 			}
 			buckets.unshift('default')
@@ -24,4 +24,8 @@ export default function pipeline(command, config) {
 			return { name: task, func, options }
 		})
 	}
+}
+
+function removeWhitespaces(string) {
+	return string.split(' ').join('')
 }

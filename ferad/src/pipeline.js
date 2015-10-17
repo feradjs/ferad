@@ -5,7 +5,7 @@ export default function pipeline(command, config) {
 	config = Object.assign({ ':default': {} }, config)
 	return {
 		sequence,
-		tasks: sequence.map(getTask)
+		tasks: _.flattenDeep(sequence.map(getTask))
 	}
 	function getTask(command) {
 		const [task, ...buckets] = command.split(':')
@@ -15,9 +15,12 @@ export default function pipeline(command, config) {
 		)
 		const sub = config[task]
 		if (sub) {
-			const result = getTask(removeWhitespaces(sub))
-			result.name = command
-			return result
+			const sub2 = removeWhitespaces(sub)
+			const oneTask = getTask(sub2)
+			return [
+				{ type: 'sequence', name: command, tasks: [sub2] },
+				oneTask
+			]
 		}
 		return { type: 'task', name: command, func: task, options }
 		function getBuckets(names) {

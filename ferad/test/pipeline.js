@@ -22,7 +22,8 @@ describe('pipeline', () => {
 			'a', {
 				'a': 'task'
 			}, ['a'], [
-				task('a', 'task')
+				seq('a', 'task'),
+				task('task', 'task')
 			]
 		)
 		test('basic whitespace option definition',
@@ -30,10 +31,25 @@ describe('pipeline', () => {
 				':1': { value: 1 },
 				'a': 'task : 1'
 			}, ['a'], [
-				task('a', 'task', { value: 1 })
+				seq('a', 'task:1'),
+				task('task:1', 'task', { value: 1 })
 			]
 		)
-		// Options sharing
+		test('basic nested definition',
+			'a:1', {
+				':1': { x: 1 },
+				':2': { y: 2 },
+				':3': { z: 3 },
+				'a': 'b:2',
+				'b': 'c:3'
+			}, ['a:1'], [
+				seq('a:1', 'b:2:1'),
+				seq('b:2:1', 'c:3:2:1'),
+				task('c:3:2:1', 'c', { x: 1, y: 2, z: 3 })
+			]
+		)
+		// Option scopes
+		// Shared options
 		// Unused options
 		// Task groups
 		// Shell commands
@@ -113,7 +129,7 @@ function test(name, command, config, sequence, tasks) {
 	))
 }
 
-function seq(name, sequence, tasks) {
+function seq(name, ...tasks) {
 	return { type: 'sequence', name, tasks }
 }
 

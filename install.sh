@@ -6,5 +6,5 @@ cd ../ferad
 npm link ferad-tasks
 npm link ferad-configs
 npm install
-chmod +x dist/main.js
-sudo ln -sf $(pwd)/dist/main.js /usr/local/bin/ferad
+chmod +x dist/ferad.js
+sudo ln -sf $(pwd)/dist/ferad.js /usr/local/bin/ferad

@@ -8,17 +8,18 @@ export default function pipeline(command, config) {
 		sequence,
 		tasks: sequence.map(task => {
 			const [func, ...buckets] = task.split(':')
-			buckets.unshift(':default')
+			buckets.unshift('default')
 			const options = Object.assign.apply(null,
-				_.flattenDeep(getBuckets(buckets.join(':')))
+				_.flattenDeep(getBuckets(buckets))
 			)
 			return { name: task, func, options }
 		})
 	}
 	function getBuckets(names) {
-		return names.split(':').slice(1).map(name => {
+		return names.map(name => {
 			const bucket = config[':' + name]
-			return _.isString(bucket) ? getBuckets(bucket) : bucket
+			return _.isString(bucket) ?
+				getBuckets(bucket.split(':').slice(1)) : bucket
 		})
 	}
 }

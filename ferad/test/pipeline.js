@@ -17,12 +17,20 @@ describe('pipeline', () => {
 				task('a:1', 'a', { x: 1 }),
 				task('b:2', 'b', { y: 2 })
 			]
-		),
+		)
 		test('basic definition',
 			'a', {
 				'a': 'task'
 			}, ['a'], [
 				task('a', 'task')
+			]
+		)
+		test('basic whitespace option definition',
+			'a', {
+				':1': { value: 1 },
+				'a': 'task : 1'
+			}, ['a'], [
+				task('a', 'task', { value: 1 })
 			]
 		)
 	})

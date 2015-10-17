@@ -7,7 +7,7 @@
     "prepublish": "rm -rf dist && babel src -d dist",
     "compile": "babel -w src -d dist",
     "start": "babel-node src/ferad.js",
-    "test": "mocha -r babel/register"
+    "test": "mocha -wr babel/register"
   },
   "repository": {
     "type": "git",

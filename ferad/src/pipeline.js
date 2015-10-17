@@ -8,18 +8,20 @@ export default function pipeline(command, config) {
 		sequence,
 		tasks: sequence.map(task => {
 			const [func, ...buckets] = task.split(':')
+			function getBuckets(names) {
+				return names.map(name => {
+					const bucket = config[':' + name]
+					if (_.isUndefined(bucket))
+						throw new Error(`No option bucket ":${name}" defined for "${func}" task!`)
+					return _.isString(bucket) ?
+						getBuckets(bucket.split(':').slice(1)) : bucket
+				})
+			}
 			buckets.unshift('default')
 			const options = Object.assign.apply(null,
 				_.flattenDeep(getBuckets(buckets))
 			)
 			return { name: task, func, options }
-		})
-	}
-	function getBuckets(names) {
-		return names.map(name => {
-			const bucket = config[':' + name]
-			return _.isString(bucket) ?
-				getBuckets(bucket.split(':').slice(1)) : bucket
 		})
 	}
 }

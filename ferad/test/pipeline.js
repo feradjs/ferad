@@ -1,4 +1,4 @@
-import { deepEqual } from 'assert'
+import { deepEqual, throws } from 'assert'
 import pipeline from '../dist/pipeline'
 
 describe('pipeline', () => {
@@ -41,11 +41,10 @@ describe('pipeline', () => {
 		)
 		testOptions('group',
 			':g', {
-				':default': { x: 0, y: 0, z: 0 },
 				':1': { x: 1, y: 1 },
 				':2': { x: 2 },
 				':g': ':1:2'
-			}, { x: 2, y: 1, z: 0 }
+			}, { x: 2, y: 1 }
 		)
 		testOptions('nested group',
 			':g', {
@@ -56,7 +55,11 @@ describe('pipeline', () => {
 				':g': ':j:3'
 			}, { x: 1, y: 2, z: 3 }
 		)
-		// Error
+		it('undefined', () => {
+			throws(() => pipeline('a:1', {}),
+				/No option bucket ":1" defined for "a" task!/
+			)
+		})
 	})
 })
 

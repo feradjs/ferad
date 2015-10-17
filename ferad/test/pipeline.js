@@ -1,5 +1,5 @@
 import { deepEqual } from 'assert'
-import pipeline from '../src/pipeline'
+import pipeline from '../dist/pipeline'
 
 describe('pipeline', () => {
 	test('empty config',

@@ -1,6 +1,6 @@
 {
   "name": "ferad",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Front End Rapid Application Development",
   "bin": "dist/ferad.js",
   "scripts": {

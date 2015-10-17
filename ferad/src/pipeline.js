@@ -5,13 +5,13 @@ export default function pipeline(command, config) {
 	config = Object.assign({ ':default': {} }, config)
 	return {
 		sequence,
-		tasks: sequence.map(task => {
-			const [func, ...buckets] = task.split(':')
+		tasks: sequence.map(command => {
+			const [task, ...buckets] = command.split(':')
 			function getBuckets(names) {
 				return names.map(name => {
 					const bucket = config[':' + name]
 					if (_.isUndefined(bucket))
-						throw new Error(`No option bucket ":${name}" defined for "${func}" task!`)
+						throw new Error(`No option bucket ":${name}" defined for "${task}" task!`)
 					return _.isString(bucket) ?
 						getBuckets(removeWhitespaces(bucket)
 							.split(':').slice(1)) : bucket
@@ -21,7 +21,11 @@ export default function pipeline(command, config) {
 			const options = Object.assign.apply(null,
 				_.flattenDeep([{}, getBuckets(buckets)])
 			)
-			return { name: task, func, options }
+			return {
+				name: command,
+				func: config[task] || task,
+				options
+			}
 		})
 	}
 }

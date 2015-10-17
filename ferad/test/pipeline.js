@@ -9,13 +9,20 @@ describe('pipeline', () => {
 		]
 	)
 	describe('commands', () => {
-		test('simple',
+		test('simple options',
 			'a:1 -> b:2', {
 				':1': { x: 1 },
 				':2': { y: 2 }
 			}, ['a:1', 'b:2'], [
 				task('a:1', 'a', { x: 1 }),
 				task('b:2', 'b', { y: 2 })
+			]
+		),
+		test('basic definition',
+			'a', {
+				'a': 'task'
+			}, ['a'], [
+				task('a', 'task')
 			]
 		)
 	})

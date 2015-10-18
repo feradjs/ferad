@@ -48,9 +48,26 @@ describe('pipeline', () => {
 				task('c:3:2:1', 'c', { x: 1, y: 2, z: 3 })
 			]
 		)
+		test('multiple with whitespaces',
+			'a:1 -> c:2', {
+				':1': { x: 1 },
+				':2': { y: 2 },
+				':3': { z: 3 },
+				'a': 'b -> c:2 ',
+				'c': 'd:3'
+			}, ['a:1', 'c:2'], [
+				seq('a:1', 'b:1', 'c:2:1'),
+				task('b:1', 'b', { x: 1 }),
+				seq('c:2:1', 'd:3:2:1'),
+				task('d:3:2:1', 'd', { x: 1, y: 2, z: 3 }),
+				seq('c:2', 'd:3:2'),
+				task('d:3:2', 'd', { y: 2, z: 3 })
+			]
+		)
 		// Option scopes
 		// Shared options
 		// Unused options
+		// Overlapping options
 		// Task groups
 		// Shell commands
 	})

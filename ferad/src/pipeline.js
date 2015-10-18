@@ -1,7 +1,7 @@
 import _ from 'lodash'
 
 export default function pipeline(command, config) {
-	const sequence = removeWhitespaces(command).split('->')
+	const sequence = parseSequence(command)
 	config = Object.assign({ ':default': {} }, config)
 	return {
 		sequence,
@@ -15,11 +15,10 @@ export default function pipeline(command, config) {
 		)
 		const sub = config[task]
 		if (sub) {
-			const sub2 = removeWhitespaces(sub)
-			const oneTask = getTask(sub2)
+			const sequence = parseSequence(sub)
 			return [
-				{ type: 'sequence', name: command, tasks: [sub2] },
-				oneTask
+				{ type: 'sequence', name: command, tasks: sequence },
+				sequence.map(getTask)
 			]
 		}
 		return { type: 'task', name: command, func: task, options }
@@ -34,6 +33,10 @@ export default function pipeline(command, config) {
 			})
 		}
 	}
+}
+
+function parseSequence(command) {
+	return removeWhitespaces(command).split('->')
 }
 
 function removeWhitespaces(string) {

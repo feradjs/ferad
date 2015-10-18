@@ -2,7 +2,7 @@ import _ from 'lodash'
 
 export default function pipeline(command, config) {
 	const sequence = parseSequence(command)
-	config = Object.assign({ ':default': {} }, config)
+	const def = config[':default'] || {}
 	return {
 		sequence,
 		tasks: _.flattenDeep(sequence.map(getTask))
@@ -22,19 +22,18 @@ export default function pipeline(command, config) {
 				]
 			}
 		}
-		const buckets = getBuckets(scope.split(':').slice(1))
 		const options = Object.assign.apply(null,
-			_.flattenDeep([{}, config[':default'], sub, buckets])
+			_.flattenDeep([{}, def, sub, getBuckets(scope)])
 		)
 		return { type: 'task', name: command, func: task, options }
-		function getBuckets(names) {
+		function getBuckets(scope) {
+			const names = scope.split(':').slice(1)
 			return names.map(name => {
 				const bucket = config[':' + name]
 				if (_.isUndefined(bucket))
 					throw new Error(`No option bucket ":${name}" defined for "${task}" task!`)
 				return _.isString(bucket) ?
-					getBuckets(removeWhitespaces(bucket)
-						.split(':').slice(1)) : bucket
+					getBuckets(removeWhitespaces(bucket)) : bucket
 			})
 		}
 	}

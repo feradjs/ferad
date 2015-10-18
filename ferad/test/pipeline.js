@@ -78,6 +78,14 @@ describe('pipeline', () => {
 				task('a', 'a', { value: 1 })
 			]
 		)
+		test('defaulted task options',
+			'a', {
+				':default': { x: 1 },
+				'a': { x: 2 }
+			}, ['a'], [
+				task('a', 'a', { x: 2 })
+			]
+		)
 		// TODO: Shared options
 		// TODO: Unused options
 		// TODO: Overlapping options

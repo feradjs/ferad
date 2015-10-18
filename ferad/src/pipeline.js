@@ -22,9 +22,9 @@ export default function pipeline(command, config) {
 				]
 			}
 		}
-		const buckets = ('default' + scope).split(':')
+		const buckets = getBuckets(scope.split(':').slice(1))
 		const options = Object.assign.apply(null,
-			_.flattenDeep([{}, sub, getBuckets(buckets)])
+			_.flattenDeep([{}, config[':default'], sub, buckets])
 		)
 		return { type: 'task', name: command, func: task, options }
 		function getBuckets(names) {

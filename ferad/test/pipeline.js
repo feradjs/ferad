@@ -71,6 +71,13 @@ describe('pipeline', () => {
 				shell('a', 'one', 'two')
 			]
 		)
+		test('task options',
+			'a', {
+				'a': { value: 1 }
+			}, ['a'], [
+				task('a', 'a', { value: 1 })
+			]
+		)
 		// TODO: Shared options
 		// TODO: Unused options
 		// TODO: Overlapping options

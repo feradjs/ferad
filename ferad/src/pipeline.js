@@ -13,16 +13,18 @@ export default function pipeline(command, config) {
 		if (sub) {
 			if (_.isArray(sub))
 				return { type: 'shell', name: task, commands: sub }
-			const sequence = parseSequence(sub)
-				.map(command => command + scope)
-			return [
-				{ type: 'sequence', name: command, tasks: sequence },
-				sequence.map(getTask)
-			]
+			if (_.isString(sub)) {
+				const sequence = parseSequence(sub)
+					.map(command => command + scope)
+				return [
+					{ type: 'sequence', name: command, tasks: sequence },
+					sequence.map(getTask)
+				]
+			}
 		}
 		const buckets = ('default' + scope).split(':')
 		const options = Object.assign.apply(null,
-			_.flattenDeep([{}, getBuckets(buckets)])
+			_.flattenDeep([{}, sub, getBuckets(buckets)])
 		)
 		return { type: 'task', name: command, func: task, options }
 		function getBuckets(names) {

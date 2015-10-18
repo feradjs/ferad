@@ -11,6 +11,8 @@ export default function pipeline(command, config) {
 		const [, task, scope = ''] = command.match(/^(.+?)(:.+)?$/)
 		const sub = config[task]
 		if (sub) {
+			if (_.isArray(sub))
+				return { type: 'shell', name: task, commands: sub }
 			const sequence = parseSequence(sub)
 				.map(command => command + scope)
 			return [

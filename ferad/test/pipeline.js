@@ -64,13 +64,17 @@ describe('pipeline', () => {
 				task('d:3:2', 'd', { y: 2, z: 3 })
 			]
 		)
-		// Option scopes
-		// Shared options
-		// Unused options
-		// Overlapping options
-		// Task groups
-		// Shell commands
-		// Errors for undefined tasks
+		test('shell',
+			'a', {
+				'a': ['one', 'two']
+			}, ['a'], [
+				shell('a', 'one', 'two')
+			]
+		)
+		// TODO: Shared options
+		// TODO: Unused options
+		// TODO: Overlapping options
+		// TODO: Errors for undefined tasks
 	})
 	describe('options', () => {
 		testOptions('default',
@@ -155,6 +159,6 @@ function task(name, func, options = {}) {
 	return { type: 'task', name, func, options }
 }
 
-function shell(name, commands) {
+function shell(name, ...commands) {
 	return { type: 'shell', name, commands }
 }

@@ -3,10 +3,10 @@ import _ from 'lodash'
 export default function pipeline(command, config) {
 	const sequence = parseSequence(command)
 	const def = config[':default'] || {}
-	return {
-		sequence,
-		tasks: _.flattenDeep(sequence.map(getTask))
-	}
+	return _.flattenDeep([
+		{ type: 'sequence', name: 'default', tasks: sequence },
+		sequence.map(getTask)
+	])
 	function getTask(command) {
 		const [, task, scope = ''] = command.match(/^(.+?)(:.+)?$/)
 		const sub = config[task]

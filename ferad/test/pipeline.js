@@ -160,9 +160,9 @@ function testOptions(name, options, config, result) {
 }
 
 function test(name, command, config, sequence, tasks) {
+	tasks.unshift(seq('default', ...sequence))
 	it(name, () => deepEqual(
-		pipeline(command, config),
-		{ sequence, tasks }
+		pipeline(command, config), tasks
 	))
 }
 

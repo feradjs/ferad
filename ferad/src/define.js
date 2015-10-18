@@ -16,7 +16,7 @@ const func = {
 		run.apply(null, tasks.concat([cb]))
 	},
 	task({ func, options }, cb) {
-		tasks[func](options, cb, gulp)
+		return tasks[func](options, cb, gulp)
 	},
 	shell({ commands }) {
 		return shell.task(commands)()

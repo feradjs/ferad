@@ -1,25 +1,24 @@
 import _ from 'lodash'
 
 export default function pipeline(command, config) {
-	const sequence = parseSequence(command)
 	const def = config[':default'] || {}
-	return _.flattenDeep([
-		{ type: 'sequence', name: 'default', tasks: sequence },
-		_.flatten(sequence).map(getTask)
-	])
+	return _.flattenDeep(getCommand('default', command))
+
+	function getCommand(name, command, scope = '') {
+		const tasks = parseSequence(command, scope)
+		return [
+			{ type: 'sequence', name, tasks },
+			_.flatten(tasks).map(getTask)
+		]
+	}
 	function getTask(command) {
 		const [, task, scope = ''] = command.match(/^(.+?)(:.+)?$/)
 		const sub = config[task]
 		if (sub) {
 			if (_.isArray(sub))
 				return { type: 'shell', name: task, commands: sub }
-			if (_.isString(sub)) {
-				const sequence = parseSequence(sub, scope)
-				return [
-					{ type: 'sequence', name: command, tasks: sequence },
-					_.flatten(sequence).map(getTask)
-				]
-			}
+			if (_.isString(sub))
+				return getCommand(command, sub, scope)
 		}
 		const options = Object.assign.apply(null,
 			_.flattenDeep([{}, def, sub, getBuckets(scope)])
@@ -38,7 +37,7 @@ export default function pipeline(command, config) {
 	}
 }
 
-function parseSequence(command, scope = '') {
+function parseSequence(command, scope) {
 	return removeWhitespaces(command)
 		.split('->').map(command => {
 			const seq = command.split(',')

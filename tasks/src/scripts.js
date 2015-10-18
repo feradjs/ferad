@@ -36,6 +36,11 @@ export default {
 		watch.on('log', _.util.log)
 		return bundle()
 	},
+	babel(o) {
+		return _.dest(o, _.src(o)
+			.pipe(_.changed(o.dest))
+			.pipe(_.babel({ stage: 0 })))
+	},
 	env({ prop, value }, cb) {
 		process.env[prop] = value
 		cb()

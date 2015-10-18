@@ -2,8 +2,8 @@ import gulp from 'gulp'
 import plugins from 'gulp-load-plugins'
 import notifier from 'node-notifier'
 
-function src({ src, cwd, plumber = false }) {
-	return gulp.src(src, { cwd })
+function src({ src, plumber = false }) {
+	return gulp.src(src)
 		.pipe(_.plumber({ errorHandler:
 			plumber ? viewError : fail }))
 }
@@ -11,8 +11,8 @@ function emit(o, stream) {
 	return dest(o, stream)
 		.pipe(_.connect.reload())
 }
-function dest({ dest, cwd }, stream) {
-	return stream.pipe(gulp.dest(dest, { cwd }))
+function dest({ dest }, stream) {
+	return stream.pipe(gulp.dest(dest))
 }
 
 function fail(error) {

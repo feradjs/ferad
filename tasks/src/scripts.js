@@ -5,15 +5,14 @@ import source from 'vinyl-source-stream'
 import buffer from 'vinyl-buffer'
 import _ from './common'
 
-function bundler({ main, paths, cwd }) {
+function bundler({ main, paths }) {
 	return browserify(main, {
 		paths,
 		debug: true,
 		verbose: true,
 		cache: {},
 		packageCache: {},
-		fullPath: true,
-		basedir: cwd
+		fullPath: true
 	}).transform(babelify.configure({
 		stage: 0
 	}))

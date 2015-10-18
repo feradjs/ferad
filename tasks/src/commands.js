@@ -8,15 +8,15 @@ import _ from './common'
 mustache.escape = data => data
 
 export default {
-	clean({ dest, cwd }, cb) {
-		del(dest, { force: true, cwd })
+	clean({ dest }, cb) {
+		del(dest, { force: true })
 			.then(() => cb())
 	},
 	serve(o) {
 		_.connect.server(o)
 	},
-	watch({ src, task, cwd }, cb, gulp) {
-		_.watch(src, { cwd }, ({ path }) => {
+	watch({ src, task }, cb, gulp) {
+		_.watch(src, ({ path }) => {
 			console.log(path)
 			gulp.start(task)
 		})

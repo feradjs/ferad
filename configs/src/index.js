@@ -2,7 +2,7 @@ import glob from 'glob'
 import homedir from 'os-homedir'
 import { Seq } from 'immutable'
 
-function defaults(env, app, cwd) {
+function defaults(env, app) {
 	const config = Object.assign({}, env, app)
 	config.dest = config.dest || (homedir() + '/.ferad/dist')
 	const { port, serveRoot, dest, assets, jadeLocals: locals } = config
@@ -15,58 +15,51 @@ function defaults(env, app, cwd) {
 		defTask('prod', 'env', {
 			prop: 'NODE_ENV', value: 'production'
 		}, ['clean']),
-		defTask('clean', 'clean', {
-			dest, cwd
-		}),
+		defTask('clean', 'clean', { dest }),
 		group('watch', ['watch-assets', 'watch-jade', 'watch-sass', 'watch-scripts']),
 		defTask('watch-assets', 'watch', {
-			src: assets, task: 'assets', cwd
+			src: assets, task: 'assets'
 		}, ['assets']),
 		defTask('watch-jade', 'watch', {
-			src: ['**/*.jade', '**/_*.html', '*.json'], task: 'jade', cwd
+			src: ['**/*.jade', '**/_*.html', '*.json'], task: 'jade'
 		}, ['jade']),
 		defTask('watch-sass', 'watch', {
-			src: '**/*.{sass,scss}', task: 'sass', cwd
+			src: '**/*.{sass,scss}', task: 'sass'
 		}, ['sass']),
 		defTask('assets-prod', 'assets', {
-			src: assets, dest, cwd
+			src: assets, dest
 		}, ['prod']),
-		defTask('assets', 'assets', {
-			src: assets, dest, cwd
-		}),
+		defTask('assets', 'assets', { src: assets, dest }),
 		defTask('jade-prod', 'jade', resource('jade', { plumber: false, locals }), ['prod']),
 		defTask('jade', 'jade', resource('jade', { plumber: true, locals })),
 		defTask('sass-prod', 'sassProd', resource('{sass,scss}'), ['prod']),
 		defTask('sass', 'sass', resource('{sass,scss}', { plumber: true })),
-		defTask('sync', 'rsync', {
-			target: config.sync, dest, cwd
-		}),
+		defTask('sync', 'rsync', { target: config.sync, dest }),
 		defTask('deploy', 'rsync', {
-			target: config.deploy, dest, cwd
+			target: config.deploy, dest
 		}, ['build']),
 		defTask('render', 'template', config)
 	].concat(
-		scripts('script', '', ['prod'], config, cwd),
-		scripts('scriptWatch', 'watch-', [], config, cwd)
+		scripts('script', '', ['prod'], config),
+		scripts('scriptWatch', 'watch-', [], config)
 	)
 	function resource(ext, options) {
 		return Object.assign({
-			src: ['[^_]*.' + ext, '**/[^_]**/[^_]*.' + ext],
-			dest, cwd
+			src: ['[^_]*.' + ext, '**/[^_]**/[^_]*.' + ext], dest
 		}, options)
 	}
 }
 
-function scripts(func, prefix, depends, { scripts, paths, dest }, cwd) {
+function scripts(func, prefix, depends, { scripts, paths, dest }) {
 	if (!scripts) {
-		scripts = Seq(glob.sync('*.js', { cwd }))
+		scripts = Seq(glob.sync('*.js'))
 			.toSetSeq().toObject()
 	}
 	const tasks = Seq(scripts)
 		.mapEntries(([main, output]) => [
 			prefix + main,
 			defTask(prefix + main, func, {
-				main, output, paths, dest, cwd
+				main, output, paths, dest
 			}, depends)
 		])
 	return tasks.toArray().concat([

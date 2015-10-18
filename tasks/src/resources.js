@@ -10,7 +10,7 @@ export default {
 		var locals = {}
 		try {
 			locals = JSON.parse(
-				fs.readFileSync(o.cwd + '/' + o.locals)
+				fs.readFileSync(o.locals)
 			)
 		} catch (error) {}
 		return _.emit(o, _.src(o)

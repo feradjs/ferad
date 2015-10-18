@@ -70,6 +70,7 @@ describe('pipeline', () => {
 		// Overlapping options
 		// Task groups
 		// Shell commands
+		// Errors for undefined tasks
 	})
 	describe('options', () => {
 		testOptions('default',

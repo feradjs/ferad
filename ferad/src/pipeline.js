@@ -8,19 +8,20 @@ export default function pipeline(command, config) {
 		tasks: _.flattenDeep(sequence.map(getTask))
 	}
 	function getTask(command) {
-		const [task, ...buckets] = command.split(':')
-		buckets.unshift('default')
-		const options = Object.assign.apply(null,
-			_.flattenDeep([{}, getBuckets(buckets)])
-		)
+		const [, task, scope = ''] = command.match(/^(.+?)(:.+)?$/)
 		const sub = config[task]
 		if (sub) {
 			const sequence = parseSequence(sub)
+				.map(command => command + scope)
 			return [
 				{ type: 'sequence', name: command, tasks: sequence },
 				sequence.map(getTask)
 			]
 		}
+		const buckets = ('default' + scope).split(':')
+		const options = Object.assign.apply(null,
+			_.flattenDeep([{}, getBuckets(buckets)])
+		)
 		return { type: 'task', name: command, func: task, options }
 		function getBuckets(names) {
 			return names.map(name => {

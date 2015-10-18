@@ -28,10 +28,12 @@
     "ferad-configs": "1.0.0",
     "ferad-tasks": "1.0.0",
     "gulp": "3.9.0",
+    "gulp-shell": "0.5.0",
     "gulp-util": "3.0.6",
     "jsonfile": "2.2.1",
     "lodash": "3.10.1",
     "pretty-hrtime": "1.0.0",
-    "rc": "1.1.1"
+    "rc": "1.1.1",
+    "run-sequence": "1.1.4"
   }
 }

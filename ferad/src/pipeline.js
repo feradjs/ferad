@@ -5,7 +5,7 @@ export default function pipeline(command, config) {
 	const def = config[':default'] || {}
 	return _.flattenDeep([
 		{ type: 'sequence', name: 'default', tasks: sequence },
-		sequence.map(getTask)
+		_.flatten(sequence).map(getTask)
 	])
 	function getTask(command) {
 		const [, task, scope = ''] = command.match(/^(.+?)(:.+)?$/)
@@ -14,11 +14,10 @@ export default function pipeline(command, config) {
 			if (_.isArray(sub))
 				return { type: 'shell', name: task, commands: sub }
 			if (_.isString(sub)) {
-				const sequence = parseSequence(sub)
-					.map(command => command + scope)
+				const sequence = parseSequence(sub, scope)
 				return [
 					{ type: 'sequence', name: command, tasks: sequence },
-					sequence.map(getTask)
+					_.flatten(sequence).map(getTask)
 				]
 			}
 		}
@@ -39,8 +38,13 @@ export default function pipeline(command, config) {
 	}
 }
 
-function parseSequence(command) {
-	return removeWhitespaces(command).split('->')
+function parseSequence(command, scope = '') {
+	return removeWhitespaces(command)
+		.split('->').map(command => {
+			const seq = command.split(',')
+				.map(command => command + scope)
+			return seq.length == 1 ? seq[0] : seq
+		})
 }
 
 function removeWhitespaces(string) {

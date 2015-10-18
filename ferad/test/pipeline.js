@@ -86,6 +86,28 @@ describe('pipeline', () => {
 				task('a', 'a', { x: 2 })
 			]
 		)
+		test('parallel',
+			'a,b -> c', {
+				'c': 'd,e'
+			}, [['a', 'b'], 'c'], [
+				task('a', 'a', {}),
+				task('b', 'b', {}),
+				seq('c', ['d', 'e']),
+				task('d', 'd', {}),
+				task('e', 'e', {})
+			]
+		)
+		test('parallel with options',
+			'a:1', {
+				':1': { x: 1 },
+				':2': { x: 2, y: 2 },
+				'a': 'b, c: 2'
+			}, ['a:1'], [
+				seq('a:1', ['b:1', 'c:2:1']),
+				task('b:1', 'b', { x: 1 }),
+				task('c:2:1', 'c', { x: 1, y: 2 })
+			]
+		)
 		// TODO: Shared options
 		// TODO: Unused options
 		// TODO: Overlapping options

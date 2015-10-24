@@ -31,7 +31,7 @@ function defaults(env, app) {
 		}, ['prod']),
 		defTask('assets', 'assets', { src: assets, dest }),
 		defTask('jade-prod', 'jade', resource('jade', { plumber: false, locals }), ['prod']),
-		defTask('jade', 'jade', resource('jade', { plumber: true, locals })),
+		defTask('jade', 'jade', resource('jade', { plumber: true, pretty: true, locals })),
 		defTask('sass-prod', 'sassProd', resource('{sass,scss}'), ['prod']),
 		defTask('sass', 'sass', resource('{sass,scss}', { plumber: true })),
 		defTask('sync', 'rsync', { target: config.sync, dest }),

@@ -12,6 +12,7 @@ export default {
 		del(dest, { force: true })
 			.then(() => cb())
 	},
+	// TODO #67: use dest option instead of root
 	serve(o) {
 		_.connect.server(o)
 	},

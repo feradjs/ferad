@@ -1,0 +1,14 @@
+{
+  ":default": {
+    "root": "src",
+    "dest": "dist"
+  },
+  ":dev": {
+    "plumber": true,
+    "pretty": true
+  },
+  "serve": {
+    "port": 5000,
+    "livereload": true
+  }
+}

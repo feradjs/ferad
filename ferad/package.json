@@ -1,6 +1,6 @@
 {
   "name": "ferad",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Highly flexible task system built on top of Gulp",
   "bin": "dist/ferad.js",
   "scripts": {

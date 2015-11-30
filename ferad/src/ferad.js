@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-require('babel/polyfill')
 
 import gulp from 'gulp'
 import json from 'jsonfile'

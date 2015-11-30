@@ -180,6 +180,15 @@ describe('pipeline', () => {
 			)
 		})
 	})
+	describe('variables', () => {
+		test('ignore as task',
+			'a', {
+				'$var': 1
+			}, ['a'], [
+				task('a', 'a')
+			]
+		)
+	})
 	describe('options', () => {
 		testOptions('default',
 			'', {

@@ -1,7 +1,7 @@
 {
   "name": "ferad",
   "version": "3.0.0",
-  "description": "Front End Rapid Application Development",
+  "description": "Highly flexible task system built on top of Gulp",
   "bin": "dist/ferad.js",
   "scripts": {
     "prepublish": "rm -rf dist && babel src -d dist",

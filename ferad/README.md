@@ -1,2 +1,2 @@
-# ferad
-Front End Rapid Application Development
+# Ferad
+More info coming soon...

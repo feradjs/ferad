@@ -1,2 +1,2 @@
-# ferad-configs
-Front End Rapid Application Development Configurations
+# Ferad Configurations
+More info coming soon...

@@ -1,16 +1,16 @@
 {
   "name": "ferad-configs",
   "version": "2.0.0",
-  "description": "Front End Rapid Application Development Configurations",
+  "description": "Ferad Configurations",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tserdyuk/ferad-configs.git"
+    "url": "https://github.com/tserdyuk/ferad.git"
   },
   "author": "Taras Serdyuk <taras@techburg.io>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tserdyuk/ferad-configs/issues"
+    "url": "https://github.com/tserdyuk/ferad/issues"
   },
-  "homepage": "https://github.com/tserdyuk/ferad-configs"
+  "homepage": "https://github.com/tserdyuk/ferad"
 }

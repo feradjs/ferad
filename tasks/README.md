@@ -1,2 +1,2 @@
-# ferad-tasks
-Front End Rapid Application Development Tasks
+# Ferad Tasks
+More info coming soon...

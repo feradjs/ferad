@@ -33,7 +33,6 @@
     "jsonfile": "2.2.1",
     "lodash": "3.10.1",
     "pretty-hrtime": "1.0.0",
-    "rc": "1.1.1",
     "run-sequence": "1.1.4"
   }
 }

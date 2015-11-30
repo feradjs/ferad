@@ -6,7 +6,6 @@ import json from 'jsonfile'
 import gulpLog from './gulp-log'
 import pipeline from './pipeline'
 import define from './define'
-import old from './old/ferad'
 
 gulpLog(gulp)
 
@@ -15,5 +14,5 @@ if (config) {
 	define(pipeline(process.argv[2], config))
 	gulp.start('default')
 } else {
-	old()
+	// TODO: default config
 }

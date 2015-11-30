@@ -2,16 +2,7 @@ import _ from 'lodash'
 
 export default function pipeline(command, config) {
 	const def = config[':default'] || {}
-
-	for (var option in config) {
-		if (prefixed(option)) {
-			var [task, name] = option.split('.')
-			var bucket = {}
-			bucket[name] = config[option]
-			config[task] = bucket
-		}
-	}
-
+	unrollOptions(config)
 	return _.flattenDeep(getCommand('default', command))
 
 	function getCommand(name, command, scope = '') {
@@ -31,7 +22,7 @@ export default function pipeline(command, config) {
 				return getCommand(command, sub, scope)
 		}
 		const options = Object.assign.apply(null,
-			_.flattenDeep([{}, def, sub, getBuckets(scope)])
+			_.flattenDeep([{}, filterOptions(def), sub, getBuckets(scope)])
 		)
 		return { type: 'task', name: command, func: task, options }
 		function getBuckets(scope) {
@@ -44,20 +35,20 @@ export default function pipeline(command, config) {
 					getBuckets(removeWhitespaces(bucket)) :
 					filterOptions(bucket)
 			})
-			function filterOptions(bucket) {
-				const result = {}
-				for (var option in bucket) {
-					if (prefixed(option)) {
-						var [target, name] = option.split('.')
-						if (target == task) {
-							result[name] = bucket[option]
-						}
-					} else {
-						result[option] = bucket[option]
+		}
+		function filterOptions(bucket) {
+			const result = {}
+			for (var option in bucket) {
+				if (prefixed(option)) {
+					var [target, name] = option.split('.')
+					if (target == task) {
+						result[name] = bucket[option]
 					}
+				} else {
+					result[option] = bucket[option]
 				}
-				return result
 			}
+			return result
 		}
 	}
 	function parseSequence(command, scope) {
@@ -79,6 +70,17 @@ export default function pipeline(command, config) {
 
 function prefixed(value) {
 	return value.indexOf('.') != -1
+}
+
+function unrollOptions(config) {
+	for (var option in config) {
+		if (prefixed(option)) {
+			var [task, name] = option.split('.')
+			var bucket = {}
+			bucket[name] = config[option]
+			config[task] = bucket
+		}
+	}
 }
 
 function removeWhitespaces(string) {

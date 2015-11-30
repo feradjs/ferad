@@ -146,7 +146,7 @@ describe('pipeline', () => {
 				]
 			)
 		})
-		describe('option scopes', () => {
+		describe('bound options', () => {
 			test('simple',
 				'a:1', {
 					':1': {
@@ -166,6 +166,18 @@ describe('pipeline', () => {
 				]
 			)
 			// TODO: merge multiple short definitions or throw error
+			test('default',
+				'a -> b', {
+					':default': {
+						'a.x': 1,
+						'b.x': 2,
+						'y': 3
+					}
+				}, ['a', 'b'], [
+					task('a', 'a', { x: 1, y: 3 }),
+					task('b', 'b', { x: 2, y: 3 })
+				]
+			)
 		})
 	})
 	describe('options', () => {

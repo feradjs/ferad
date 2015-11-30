@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+require('app-module-path')
+	.addPath(process.cwd())
 
 import gulp from 'gulp'
 import json from 'jsonfile'

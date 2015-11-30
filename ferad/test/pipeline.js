@@ -112,6 +112,28 @@ describe('pipeline', () => {
 		// TODO: Unused options
 		// TODO: Overlapping options
 		// TODO: Errors for undefined tasks
+		describe('inline shell', () => {
+			test('simple',
+				'[mkdir a]', {},
+				['mkdir a'], [
+					shell('mkdir a', 'mkdir a')
+				]
+			)
+			test('whitespaces',
+				'a -> [ mkdir a ] , b', {},
+				['a', ['mkdir a', 'b']], [
+					task('a', 'a'),
+					shell('mkdir a', 'mkdir a'),
+					task('b', 'b')
+				]
+			)
+			test('special characters',
+				'[ferad "a, b -> c"]', {},
+				['ferad "a, b -> c"'], [
+					shell('ferad "a, b -> c"', 'ferad "a, b -> c"')
+				]
+			)
+		})
 	})
 	describe('options', () => {
 		testOptions('default',

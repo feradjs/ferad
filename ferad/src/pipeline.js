@@ -61,14 +61,14 @@ function escapeShell(command) {
 }
 function escape(command) {
 	return command
-		.replace('->', '\x01')
-		.replace(',', '\x02')
+		.replace(/->/g, '\x01')
+		.replace(/,/g, '\x02')
 		.replace(/ /g, '\x03')
 }
 
 function unescape(command) {
 	return command
-		.replace('\x01', '->')
-		.replace('\x02', ',')
+		.replace(/\x01/g, '->')
+		.replace(/\x02/g, ',')
 		.replace(/\x03/g, ' ')
 }

@@ -128,9 +128,9 @@ describe('pipeline', () => {
 				]
 			)
 			test('special characters',
-				'[ferad "a, b -> c"]', {},
-				['ferad "a, b -> c"'], [
-					shell('ferad "a, b -> c"', 'ferad "a, b -> c"')
+				'[ferad "a, b, c -> d"]', {},
+				['ferad "a, b, c -> d"'], [
+					shell('ferad "a, b, c -> d"', 'ferad "a, b, c -> d"')
 				]
 			)
 		})

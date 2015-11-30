@@ -8,6 +8,8 @@ import _ from './common'
 mustache.escape = data => data
 
 export default {
+	// TODO: copy task
+	// TODO: del + mkdir
 	clean({ dest }, cb) {
 		del(dest, { force: true })
 			.then(() => cb())

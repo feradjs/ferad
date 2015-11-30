@@ -35,17 +35,40 @@ export default function pipeline(command, config) {
 			})
 		}
 	}
-}
-
-function parseSequence(command, scope) {
-	return removeWhitespaces(command)
-		.split('->').map(command => {
-			const seq = command.split(',')
-				.map(command => command + scope)
-			return seq.length == 1 ? seq[0] : seq
-		})
+	function parseSequence(command, scope) {
+		return removeWhitespaces(escapeShell(command))
+			.split('->').map(command => {
+				const seq = command.split(',')
+					.map(command => command.charCodeAt(0) == 0 ?
+						inlineShell(command) :
+						command + scope)
+				return seq.length == 1 ? seq[0] : seq
+			})
+	}
+	function inlineShell(command) {
+		command = unescape(command.slice(1))
+		config[command] = [command]
+		return command
+	}
 }
 
 function removeWhitespaces(string) {
 	return string.split(' ').join('')
+}
+function escapeShell(command) {
+	return command.replace(/\[\s*(.+)\s*\]/g,
+		(match, inline) => '\x00' + escape(inline))
+}
+function escape(command) {
+	return command
+		.replace('->', '\x01')
+		.replace(',', '\x02')
+		.replace(' ', '\x03')
+}
+
+function unescape(command) {
+	return command
+		.replace('\x01', '->')
+		.replace('\x02', ',')
+		.replace('\x03', ' ')
 }

@@ -2,12 +2,7 @@
   "name": "ferad-configs",
   "version": "1.0.0",
   "description": "Front End Rapid Application Development Configurations",
-  "main": "dist/index.js",
-  "scripts": {
-    "prepublish": "rm -rf dist && babel src -d dist",
-    "compile": "babel -w src -d dist",
-    "test": "mocha -r babel/register"
-  },
+  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/tserdyuk/ferad-configs.git"
@@ -18,13 +13,4 @@
     "url": "https://github.com/tserdyuk/ferad-configs/issues"
   },
   "homepage": "https://github.com/tserdyuk/ferad-configs",
-  "devDependencies": {
-    "babel": "5.8.23",
-    "mocha": "2.3.0"
-  },
-  "dependencies": {
-    "glob": "5.0.14",
-    "immutable": "3.7.5",
-    "os-homedir": "1.0.1"
-  }
 }

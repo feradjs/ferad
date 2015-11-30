@@ -4,7 +4,7 @@ export default function pipeline(command, config) {
 	const def = config[':default'] || {}
 
 	for (var option in config) {
-		if (option.indexOf('.') != -1) {
+		if (prefixed(option)) {
 			var [task, name] = option.split('.')
 			var bucket = {}
 			bucket[name] = config[option]
@@ -47,9 +47,9 @@ export default function pipeline(command, config) {
 			function filterOptions(bucket) {
 				const result = {}
 				for (var option in bucket) {
-					if (option.indexOf('.') != -1) {
-						var [scope, name] = option.split('.')
-						if (scope == task) {
+					if (prefixed(option)) {
+						var [target, name] = option.split('.')
+						if (target == task) {
 							result[name] = bucket[option]
 						}
 					} else {
@@ -75,6 +75,10 @@ export default function pipeline(command, config) {
 		config[command] = [command]
 		return command
 	}
+}
+
+function prefixed(value) {
+	return value.indexOf('.') != -1
 }
 
 function removeWhitespaces(string) {

@@ -1,4 +1,4 @@
 
-module.exports = {
-	empty: require('./configs/empty.json')
+module.exports = function(name) {
+	return require('./configs/' + name + '.json')
 }

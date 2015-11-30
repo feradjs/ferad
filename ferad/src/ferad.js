@@ -12,7 +12,7 @@ const config = Object.assign(
 	json.readFileSync('ferad.json', { throws: false })
 )
 const based = Object.assign(
-	require(config.$configs)[config.$base],
+	require(config.$configs)(config.$base),
 	config
 )
 define(require(config.$tasks),

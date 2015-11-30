@@ -31,8 +31,23 @@ export default function pipeline(command, config) {
 				if (_.isUndefined(bucket))
 					throw new Error(`No option bucket ":${name}" defined for "${task}" task!`)
 				return _.isString(bucket) ?
-					getBuckets(removeWhitespaces(bucket)) : bucket
+					getBuckets(removeWhitespaces(bucket)) :
+					filterOptions(bucket)
 			})
+			function filterOptions(bucket) {
+				const result = {}
+				for (var option in bucket) {
+					if (option.indexOf('.') != -1) {
+						var [scope, name] = option.split('.')
+						if (scope == task) {
+							result[name] = bucket[option]
+						}
+					} else {
+						result[option] = bucket[option]
+					}
+				}
+				return result
+			}
 		}
 	}
 	function parseSequence(command, scope) {
@@ -55,6 +70,7 @@ export default function pipeline(command, config) {
 function removeWhitespaces(string) {
 	return string.split(' ').join('')
 }
+
 function escapeShell(command) {
 	return command.replace(/\[\s*(.+?)\s*\]/g,
 		(match, inline) => '\x00' + escape(inline))
@@ -65,7 +81,6 @@ function escape(command) {
 		.replace(/,/g, '\x02')
 		.replace(/ /g, '\x03')
 }
-
 function unescape(command) {
 	return command
 		.replace(/\x01/g, '->')

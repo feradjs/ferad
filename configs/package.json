@@ -1,6 +1,6 @@
 {
   "name": "ferad-configs",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Front End Rapid Application Development Configurations",
   "main": "index.js",
   "repository": {
@@ -12,5 +12,5 @@
   "bugs": {
     "url": "https://github.com/tserdyuk/ferad-configs/issues"
   },
-  "homepage": "https://github.com/tserdyuk/ferad-configs",
+  "homepage": "https://github.com/tserdyuk/ferad-configs"
 }

@@ -1,0 +1,5 @@
+{
+  "$tasks": "ferad-tasks",
+  "$configs": "ferad-configs",
+  "$base": "empty"
+}

@@ -1,6 +1,6 @@
 {
   "name": "ferad-tasks",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "Ferad Tasks",
   "main": "dist/index.js",
   "scripts": {

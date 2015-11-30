@@ -56,19 +56,19 @@ function removeWhitespaces(string) {
 	return string.split(' ').join('')
 }
 function escapeShell(command) {
-	return command.replace(/\[\s*(.+)\s*\]/g,
+	return command.replace(/\[\s*(.+?)\s*\]/g,
 		(match, inline) => '\x00' + escape(inline))
 }
 function escape(command) {
 	return command
 		.replace('->', '\x01')
 		.replace(',', '\x02')
-		.replace(' ', '\x03')
+		.replace(/ /g, '\x03')
 }
 
 function unescape(command) {
 	return command
 		.replace('\x01', '->')
 		.replace('\x02', ',')
-		.replace('\x03', ' ')
+		.replace(/\x03/g, ' ')
 }

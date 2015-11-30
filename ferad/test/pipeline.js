@@ -133,6 +133,18 @@ describe('pipeline', () => {
 					shell('ferad "a, b, c -> d"', 'ferad "a, b, c -> d"')
 				]
 			)
+			test('multiple',
+				'a', {
+					'a': 'b -> [com x], [com y]',
+					'b': '[com z]'
+				}, ['a'], [
+					seq('a', 'b', ['com x', 'com y']),
+					seq('b', 'com z'),
+					shell('com z', 'com z'),
+					shell('com x', 'com x'),
+					shell('com y', 'com y')
+				]
+			)
 		})
 	})
 	describe('options', () => {

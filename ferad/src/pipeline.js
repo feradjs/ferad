@@ -2,6 +2,16 @@ import _ from 'lodash'
 
 export default function pipeline(command, config) {
 	const def = config[':default'] || {}
+
+	for (var option in config) {
+		if (option.indexOf('.') != -1) {
+			var [task, name] = option.split('.')
+			var bucket = {}
+			bucket[name] = config[option]
+			config[task] = bucket
+		}
+	}
+
 	return _.flattenDeep(getCommand('default', command))
 
 	function getCommand(name, command, scope = '') {

@@ -158,6 +158,14 @@ describe('pipeline', () => {
 					task('a:1', 'a', { x: 1, z: 3 })
 				]
 			)
+			test('short syntax',
+				'a', {
+					'a.x': 1
+				}, ['a'], [
+					task('a', 'a', { x: 1 })
+				]
+			)
+			// TODO: merge multiple short definitions or throw error
 		})
 	})
 	describe('options', () => {

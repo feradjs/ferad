@@ -2,7 +2,7 @@
 Gulp Frontend for Humans
 
 ## About
-Ferad is a JavaScript project management tool. It is built on top of Gulp with the aim of maximizing web development productivity.
+Ferad is a JavaScript project management tool. It is built on the top of Gulp with the aim of maximizing web development productivity.
 In its core, Ferad makes the configuration a first-class citizen, by providing ways to share, compose, override configuration options and build pipelines.
 
 ##Ferad's Objectives
@@ -21,3 +21,6 @@ Ferad's high level, declarative configs makes project structure and both process
 
 ## Status
 Ferad is under active development with evolving design.
+
+## License
+MIT

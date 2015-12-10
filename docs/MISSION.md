@@ -18,9 +18,3 @@ Free file space and mental resources to write actual code. Templating or code ge
 Ferad is exclusively built to support complex JS projects, custom workflows and monolithic repositories.
 It can easily manage shared source trees across multiple apps, build targets, profiles, technology stacks all under one project.
 Ferad's high level, declarative configs makes project structure and both processes explicit and comprehensive.
-
-## Status
-Ferad is under active development with evolving design.
-
-## License
-MIT

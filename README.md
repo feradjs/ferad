@@ -3,6 +3,8 @@
 
 Gulp Frontend
 
+Ferad takes care of managing configuration. Ferad makes easy to reuse, distribute, compose gulp tasks and projects. Ferad treats configuration as first-class citizen.
+
 ## Install
 ```shell
 npm install -g ferad

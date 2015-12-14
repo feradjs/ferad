@@ -1,26 +1,53 @@
 # Ferad
-Gulp Frontend for Humans
+[![NPM version][npm-image]][npm-url]
 
-## About
-Ferad is a JavaScript project management tool. It is built on the top of Gulp with the aim of maximizing web development productivity.
-In its core, Ferad makes the configuration a first-class citizen, by providing ways to share, compose, override configuration options and build pipelines.
+Gulp Frontend
 
-##Ferad's Objectives
+Ferad takes care of managing configuration. Ferad makes easy to reuse, distribute, compose gulp tasks and projects. Ferad treats configuration as first-class citizen.
 
-###Accessibility
-Make web development technologies easily accessible, by eliminating the burden of setup and configuration and integrating them under a unified interface.
+### Differences from Gulp
+- Ferad tasks accept options.
+- Ferad uses declarative task configuration syntax with powerful options handling.
+- Ferad allows to write `feradfile` with [CoffeScript] or [EcmaScript 6] out of the box.
 
-###Abstraction over Boilerplate
-Eliminate boilerplate by replacing it with single ferad.json, providing a single source of information about application's build and structure.
-Free file space and mental resources to write actual code. Templating or code generation is for programs, not humans.
+## Install
+```shell
+npm install -g ferad
+```
 
-###Centralization Made Easy
-Ferad is exclusively built to support complex JS projects, custom workflows and monolithic repositories.
-It can easily manage shared source trees across multiple apps, build targets, profiles, technology stacks all under one project.
-Ferad's high level, declarative configs makes project structure and both processes explicit and comprehensive.
+## Usage
+### `feradfile.js`:
 
-## Status
-Ferad is under active development with evolving design.
+```javascript
+var ferad = require('ferad');
+var gulp = require('gulp');
+
+ferad.task('build', function() {
+    return gulp.src('./src')
+        .pipe(gulp.dest('./dist'));
+})
+```
+### `ferad.json`:
+```json
+{
+  "run": "build"
+}
+```
+### Execution
+```shell
+ferad run
+```
+
+## API
+
+### ferad.task(name, [func])
+Creates or returns a task.
+```javascript
+ferad.task('do', function(cb))
+```
 
 ## License
-MIT
+[MIT License](https://en.wikipedia.org/wiki/MIT_License)
+
+[npm-url]: https://npmjs.org/package/ferad
+[npm-image]: https://img.shields.io/npm/v/ferad.svg

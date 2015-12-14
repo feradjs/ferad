@@ -5,6 +5,11 @@ Gulp Frontend
 
 Ferad takes care of managing configuration. Ferad makes easy to reuse, distribute, compose gulp tasks and projects. Ferad treats configuration as first-class citizen.
 
+### Differences from Gulp
+- Ferad tasks accept options.
+- Ferad uses declarative task configuration syntax with powerful options handling.
+- Ferad allows to write `feradfile` with [CoffeScript] or [EcmaScript 6] out of the box.
+
 ## Install
 ```shell
 npm install -g ferad
@@ -31,6 +36,14 @@ ferad.task('build', function() {
 ### Execution
 ```shell
 ferad run
+```
+
+## API
+
+### ferad.task(name, [func])
+Creates or returns a task.
+```javascript
+ferad.task('do', function(cb))
 ```
 
 ## License

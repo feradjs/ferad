@@ -17,3 +17,4 @@
 	- Quick Seed Install
 		- Update
 	- ES6 feradfile.js
+		- Default options

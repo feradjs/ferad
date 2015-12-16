@@ -1,11 +1,11 @@
 import fs from 'fs'
-import path from 'path'
 import _ from './common'
 
 export default {
 	assets(o) {
 		return _.emit(o, _.src(o))
 	},
+	// TODO: pass locals from option
 	jade(o) {
 		var locals = {}
 		try {

@@ -2,6 +2,7 @@
   "private": true,
   "devDependencies": {
     "babel-preset-es2015": "^6.3.13",
+    "del": "^2.2.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.1",
     "gulp-error-notifier": "^1.1.0",
@@ -9,6 +10,7 @@
     "gulp-mocha": "^2.2.0",
     "gulp-newer": "^1.1.0",
     "gulp-watch": "^4.3.5",
+    "run-sequence": "^1.1.5",
     "through2": "^2.0.0"
   }
 }

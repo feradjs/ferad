@@ -1,0 +1,7 @@
+{
+  "private": true,
+  "devDependencies": {
+    "ferad": "4.0.0",
+    "ferad-tasks": "4.0.0"
+  }
+}

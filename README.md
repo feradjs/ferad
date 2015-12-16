@@ -1,6 +1,4 @@
 # Ferad
-[![NPM version][npm-image]][npm-url]
-
 Gulp Frontend
 
 Ferad takes care of managing configuration. Ferad makes easy to reuse, distribute, compose gulp tasks and projects. Ferad treats configuration as first-class citizen.
@@ -47,6 +45,3 @@ ferad.task('do', function(cb))
 
 ## License
 [MIT License](https://en.wikipedia.org/wiki/MIT_License)
-
-[npm-url]: https://npmjs.org/package/ferad
-[npm-image]: https://img.shields.io/npm/v/ferad.svg

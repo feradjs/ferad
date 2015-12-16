@@ -1,3 +1,4 @@
+require('babel-register')
 var gulp = require('gulp')
 var run = require('run-sequence')
 var through = require('through2')
@@ -35,7 +36,6 @@ gulp.task('compile', function() {
 })
 
 gulp.task('test', function() {
-	return gulp.src(tests)
-		.pipe(_.babel({ presets: ['es2015'] }))
+	return gulp.src(tests, { read: false })
 		.pipe(_.mocha())
 })

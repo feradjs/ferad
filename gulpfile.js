@@ -9,9 +9,10 @@ var dest = 'packages'
 var scripts = 'packages/*/src/**/*.js'
 var tests = 'packages/*/test/**/*.js'
 
+
 gulp.task('default', ['build'], function() {
 	_.watch([scripts, tests], function() {
-		gulp.start('compile')
+		gulp.start('test')
 	})
 })
 
@@ -21,6 +22,14 @@ gulp.task('build', function(cb) {
 
 gulp.task('clean', function() {
 	return del('packages/*/dist')
+})
+
+gulp.task('test', ['compile'], function() {
+	return gulp.src(tests, { read: false })
+		.pipe(_.errorNotifier())
+		.pipe(_.mocha({
+			reporter: 'min'
+		}))
 })
 
 gulp.task('compile', function() {
@@ -33,9 +42,4 @@ gulp.task('compile', function() {
 		.pipe(_.newer(dest))
 		.pipe(_.babel({ presets: ['es2015'] }))
 		.pipe(gulp.dest(dest))
-})
-
-gulp.task('test', function() {
-	return gulp.src(tests, { read: false })
-		.pipe(_.mocha())
 })

@@ -11,5 +11,5 @@
     "url": "https://techburg.io"
   },
   "license": "MIT",
-  "bin": "dist/index.js"
+  "main": "dist/index.js"
 }

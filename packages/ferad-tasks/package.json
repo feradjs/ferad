@@ -1,25 +1,17 @@
 {
   "name": "ferad-tasks",
-  "version": "1.1.1",
+  "version": "4.0.0",
   "description": "Ferad Tasks",
-  "main": "dist/index.js",
-  "scripts": {
-    "test": "mocha -r babel/register"
+  "homepage": "https://github.com/feradjs/ferad",
+  "repository": "feradjs/ferad",
+  "bugs": "https://github.com/feradjs/ferad/issues",
+  "author": {
+    "name": "Taras Serdyuk",
+    "email": "taras@techburg.io",
+    "url": "https://techburg.io"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tserdyuk/ferad.git"
-  },
-  "author": "Taras Serdyuk <taras@techburg.io>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/tserdyuk/ferad/issues"
-  },
-  "homepage": "https://github.com/tserdyuk/ferad",
-  "devDependencies": {
-    "babel": "5.8.23",
-    "mocha": "2.3.0"
-  },
+  "main": "dist/index.js",
   "dependencies": {
     "babelify": "6.3.0",
     "browserify": "11.0.1",
@@ -38,7 +30,6 @@
     "gulp-uglify": "1.4.1",
     "gulp-util": "3.0.6",
     "gulp-watch": "4.2.5",
-    "mustache": "2.1.3",
     "node-notifier": "4.3.1",
     "rsync": "0.4.0",
     "vinyl-buffer": "1.0.0",

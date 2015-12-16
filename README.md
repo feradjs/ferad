@@ -17,7 +17,6 @@ npm install -g ferad
 
 ## Usage
 ### `feradfile.js`:
-
 ```javascript
 var ferad = require('ferad');
 var gulp = require('gulp');

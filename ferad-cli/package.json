@@ -1,7 +1,7 @@
 {
-  "name": "ferad",
-  "version": "3.1.1",
-  "description": "Gulp Frontend for Humans",
+  "name": "ferad-cli",
+  "version": "1.0.0",
+  "description": "Ferad Command Line",
   "bin": "dist/ferad.js",
   "scripts": {
     "prepublish": "rm -rf dist && babel src -d dist",
@@ -9,16 +9,17 @@
     "start": "babel-node src/ferad.js",
     "test": "mocha -wr babel/register"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tserdyuk/ferad.git"
+  "repository": "feradjs/ferad",
+  "author": {
+    "name": "Taras Serdyuk",
+    "email": "taras@techburg.io",
+    "url": "https://techburg.io"
   },
-  "author": "Taras Serdyuk <taras@techburg.io>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tserdyuk/ferad/issues"
+    "url": "https://github.com/feradjs/ferad/issues"
   },
-  "homepage": "https://github.com/tserdyuk/ferad",
+  "homepage": "https://github.com/feradjs/ferad",
   "devDependencies": {
     "babel": "5.8.23",
     "mocha": "2.3.0"

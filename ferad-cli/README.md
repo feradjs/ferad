@@ -9,7 +9,7 @@ npm install -g ferad-cli
 ```
 
 ## Usage
-
+Execute commands from [`ferad.json`] using tasks defined in [`feradfile.js`]
 
 ### ferad
 Executes a command named `"default"` in [`ferad.json`] or a task named so in [`feradfile.js`].

@@ -3,7 +3,7 @@ npm install
 gulp build
 cd packages/ferad && npm link
 cd ../ferad-tasks && npm link
-cd ../../global
+cd ../../default
 npm link ferad
 npm link ferad-tasks
 npm install

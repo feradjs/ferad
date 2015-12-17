@@ -1,10 +1,14 @@
 #!/bin/sh
-sudo chmod -R 777 /usr/local/lib/node_modules
-cd tasks && npm link
-cd ../configs && npm link
-cd ../ferad-cli
+npm install
+gulp build
+cd packages/ferad && npm link
+cd ../ferad-tasks && npm link
+cd ../../global
+npm link ferad
 npm link ferad-tasks
-npm link ferad-configs
+npm install
+cd ../packages/ferad-cli
+npm link ferad
 npm install
 chmod +x dist/ferad.js
 sudo ln -sf $(pwd)/dist/ferad.js /usr/local/bin/ferad

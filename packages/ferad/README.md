@@ -1,7 +1,7 @@
 # Ferad API
 [![NPM version][npm-image]][npm-url]
 
-For more information about Ferad visit [homepage].
+For more information about Ferad visit the [homepage].
 
 ## Install
 ```shell
@@ -20,6 +20,12 @@ ferad.task('copy', function(o) {
 ```
 
 ## API
+
+### ferad.src
+
+### ferad.start
+
+### ferad.dist
 
 ### ferad.task(name, func)
 Registers Ferad task.

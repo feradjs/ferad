@@ -8,17 +8,10 @@ import gulpLog from './gulp-log'
 import pipeline from './pipeline'
 import define from './define'
 
-const config = Object.assign(
-	require('../default.json'),
-	json.readFileSync('ferad.json', { throws: false })
-)
-const based = Object.assign(
-	require(config.$configs)(config.$base),
-	config
-)
-define(require(config.$tasks),
-	pipeline(process.argv[2], based)
-)
+require('feradfile')
+const config = json.readFileSync('ferad.json', { throws: false })
+
+define(pipeline(process.argv[2], config))
 
 gulpLog(gulp)
 gulp.start('default')

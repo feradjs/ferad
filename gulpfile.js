@@ -1,4 +1,5 @@
 require('babel-register')
+
 var gulp = require('gulp')
 var run = require('run-sequence')
 var through = require('through2')

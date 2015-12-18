@@ -2,11 +2,13 @@
 [![Gitter chat][gitter-image]][gitter-url]
 
 ## About
-Ferad takes care of managing configuration. Ferad makes easy to reuse, distribute, compose gulp tasks and projects. Ferad treats configuration as first-class citizen.
+Ferad makes Gulp tasks reusable by separating functionality from configuration. Ferad treats configuration as first-class citizen. It provides powerful declarative configuration syntax.
 
 ## Features
 * Ferad tasks accept options.
-* Ferad uses declarative task configuration syntax with powerful options handling.
+* Option buckets are composable.
+* Option bucket can be applied to multiple tasks and commands.
+* Declarative commands definition.
 
 ## Documentation
 * [How to use Ferad](https://npmjs.org/package/ferad-cli)
@@ -14,6 +16,14 @@ Ferad takes care of managing configuration. Ferad makes easy to reuse, distribut
 * [Ferad Configuration Syntax](/docs/SYNTAX.md)
 
 ## Contributing
+TODO: Guide
+* Documentation
+* Usage examples and tutorials linked here
+* Feedback
+* Usability
+* Bugs - ERARSTR
+* Feature request - Use case, examples
+* Code - pull requests <- issuess
 
 ## License
 [MIT License](https://en.wikipedia.org/wiki/MIT_License)

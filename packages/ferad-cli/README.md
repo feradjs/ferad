@@ -15,8 +15,8 @@ Ferad executes commands defined in [`package.json`] using tasks defined in [`fer
 ### ferad *command*
 Executes a *command* from [`package.json`] or a task named so in  [`feradfile.js`].
 ```shell
-ferad # Executes a command 'default'
-ferad build # Executes a command 'build'
+ferad # Executes a command "default"
+ferad build # Executes a command "build"
 ferad clean -> build, report # Executes multiple commands
 ```
 
@@ -40,7 +40,7 @@ ferad clean -> build, report # Executes multiple commands
 ```
 
 ### `feradfile.js`
-#### [Task API][api]
+#### [Ferad API][api]
 ```javascript
 var ferad = require('ferad');
 var tasks = require('ferad-tasks');
@@ -48,8 +48,8 @@ var tasks = require('ferad-tasks');
 ferad.tasks(tasks);
 ferad.task('echo', function(o, cb) {
     console.log(o.message);
-	cb()
-})
+	cb();
+});
 ```
 
 ## License

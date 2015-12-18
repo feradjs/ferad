@@ -21,15 +21,15 @@ ferad clean -> build, report # Executes multiple commands
 ```
 
 ### `package.json`
-[Configuration Syntax][config].
+#### [Configuration Syntax][syntax]
 ```json
 {
   "private": true,
   "ferad": {
-    "clean": "clean -> babel -> echo:{ message: 'done!' }",
+    "clean": "del -> echo",
     ":default": {
-      "dest": "dist",
-      "src"
+      "dest": "./dist",
+      "message": "Cleaned!"
     }
   },
   "devDependencies": {
@@ -40,7 +40,7 @@ ferad clean -> build, report # Executes multiple commands
 ```
 
 ### `feradfile.js`
-More information on [task definition][tasks].
+#### [Task API][api]
 ```javascript
 var ferad = require('ferad');
 var tasks = require('ferad-tasks');
@@ -62,8 +62,8 @@ ferad.task('echo', function(o, cb) {
 [gitter-image]: https://badges.gitter.im/feradjs/ferad.png
 
 [homepage]: https://github.com/feradjs/ferad
-[config]: https://github.com/feradjs/ferad/docs/SYNTAX.md
-[tasks]: https://npmjs.org/package/ferad
+[syntax]: https://github.com/feradjs/ferad/docs/SYNTAX.md
+[api]: https://npmjs.org/package/ferad
 
 [`package.json`]: #package-json
 [`feradfile.js`]: #feradfile-js

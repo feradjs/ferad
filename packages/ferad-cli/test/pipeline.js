@@ -109,7 +109,6 @@ describe('pipeline', () => {
 			]
 		)
 		// TODO: Shared options
-		// TODO: Unused options
 		// TODO: Overlapping options
 		// TODO: Errors for undefined tasks
 		describe('inline shell', () => {

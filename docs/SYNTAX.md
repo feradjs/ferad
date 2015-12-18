@@ -9,6 +9,7 @@
   - ...
 - [Examples](#examples)
   - ...
+- [Implementation Details]
 
 ## Overview
 Ferad configuration is defined in the `"ferad"` section of [`package.json`] file.
@@ -139,10 +140,49 @@ Options can be applied to the task directly.
 ```
 Task options take lower precedence than option buckets.
 
-### Short Options
+### Bucket Groups
+Buckets can be made from other buckets.
+```json
+{
+  ":a": ":b:c",
+  ":b": {
+    "x": 1
+  },
+  ":c": {
+    "y": 2
+  }
+}
+```
+Bucket `a` is equal to:
+```json
+{
+  "x": 1,
+  "y": 2
+}
+```
 
 ### Option Differentiation
 TBD
+
+### Short Option
+There is a short syntax for single option definition.
+```json
+{
+  "a.x": 1
+}
+```
+Task `a` has option `x` equal to `1`.
+
+Short option syntax can be used inside option buckets.
+```json
+{
+  ":opts": {
+    "a.x": 1,
+    "b.x": 2
+  }
+}
+```
+For bucket `opts` task `a` has `x = 1` and task `b` has `x = 2`.
 
 ### Inline Options
 TBD
@@ -150,7 +190,14 @@ TBD
 ### Multiple Buckets
 TBD
 
-## Examples
+## Resolution Examples
 TBD
+
+## Implementation Details
+### Options Merging
+### Gulp Task Naming
+### Commands validation
+### Commands overlapping
+Currently a command with the same name as a task shields it.
 
 [`package.json`]: https://docs.npmjs.com/files/package.json

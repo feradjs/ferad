@@ -40,7 +40,7 @@ Parallel commands have higher precedence than successive ones.
   "command": "a, b -> c"
 }
 ```
-`c` is executed after `a` and `b` are finished.
+Task `c` is executed after `a` and `b` tasks are finished.
 
 ### Shell
 Shell commands are defined using square brackets inside value string.
@@ -52,13 +52,13 @@ Shell commands are defined using square brackets inside value string.
 
 ### Groups
 TBD
-Commands can be grouped with braces:
+Commands can be grouped with braces.
 ```json
 {
   "command": "a, (b -> c), d"
 }
 ```
-`a`, `b -> c` and `d` are executed in parallel.
+Tasks `a`, `b -> c` and `d` are executed in parallel.
 
 ### Multiline
 TBD
@@ -81,12 +81,12 @@ Commands can reference each other.
   "command2": "b -> c"
 }
 ```
-`command1` is equal to `a -> b -> c`.
+Command `command1` is equal to `a -> b -> c`.
 
 ## Options
 
 ### Buckets
-Options are defined in named buckets using colon:
+Options are defined in named buckets using colon.
 ```json
 {
   ":options": {
@@ -97,12 +97,56 @@ Options are defined in named buckets using colon:
 ```
 
 ### Default
-### Task Options
+Default options are applied to all tasks and take the lowest precedence.
+```json
+{
+  ":default": {
+    "x": 1,
+    "y": 2
+  }
+}
+```
+
 ### Bucket Application
+Option buckets can be applied to tasks in commands.
+```json
+{
+  "command": "a -> b:opts",
+  ":opts": {
+    "x": 1
+  }
+}
+```
+Options `opts` are applied to `b` task.
+
+Option buckets being applied to commands set options for all their tasks.
+```json
+{
+  "command": "ab:opts",
+  "ab": "a, b"
+}
+```
+Options `opts` are applied to both `a` and `b` tasks.
+
+### Task Options
+Options can be applied to the task directly.
+```json
+{
+  "sass": {
+    "src": "src/**/*.scss"
+  }
+}
+```
+Task options take lower precedence than option buckets.
+
+### Short Options
+
 ### Option Differentiation
 TBD
+
 ### Inline Options
 TBD
+
 ### Multiple Buckets
 TBD
 

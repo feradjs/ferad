@@ -10,24 +10,25 @@ npm install -g ferad-cli
 ```
 
 ## Usage
-Execute commands from [`package.json`] using tasks defined in [`feradfile.js`]
+Ferad executes commands defined in [`package.json`] using tasks defined in [`feradfile.js`].
 
-### ferad
-Executes a command named `"default"` in [`package.json`] or a task named so in [`feradfile.js`].
+### ferad *command*
+Executes a *command* from [`package.json`] or a task named so in  [`feradfile.js`].
 ```shell
-ferad
+ferad # Executes command or task named 'default'
+ferad build # Executes command or task named 'build'
+ferad clean -> build, report # Executes multiple commands or tasks
 ```
-
-### ferad *name*
-Executes a command from [`package.json`] or a task named so in  [`feradfile.js`].
-
-
-### Global Commands
-If there is no [`package.json`] in the directory `~/.ferad/`
 
 ### `feradfile.js`:
 ```javascript
-TODO: real example
+var ferad = require('ferad');
+var tasks = require('ferad-tasks');
+
+ferad.tasks(tasks);
+ferad.task('echo', function(o) {
+    console.log(o.message);
+})
 ```
 ### `package.json`:
 ```json

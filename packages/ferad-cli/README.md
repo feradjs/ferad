@@ -2,7 +2,7 @@
 [![NPM version][npm-image]][npm-url]
 [![Gitter chat][gitter-image]][gitter-url]
 
-For more information about Ferad visit the [homepage].
+For general information about Ferad visit the [homepage].
 
 ## Install
 ```shell
@@ -10,29 +10,46 @@ npm install -g ferad-cli
 ```
 
 ## Usage
-Ferad executes commands defined in [`package.json`] using tasks defined in [`feradfile.js`].
+Ferad executes commands defined in [`package.json`] using tasks defined in [`feradfile.js`]. Tasks can be used in place of commands.
 
 ### ferad *command*
 Executes a *command* from [`package.json`] or a task named so in  [`feradfile.js`].
 ```shell
-ferad # Executes command or task named 'default'
-ferad build # Executes command or task named 'build'
-ferad clean -> build, report # Executes multiple commands or tasks
+ferad # Executes a command 'default'
+ferad build # Executes a command 'build'
+ferad clean -> build, report # Executes multiple commands
 ```
 
-### `feradfile.js`:
+### `package.json`
+[Configuration Syntax][config].
+```json
+{
+  "private": true,
+  "ferad": {
+    "clean": "clean -> babel -> echo:{ message: 'done!' }",
+    ":default": {
+      "dest": "dist",
+      "src"
+    }
+  },
+  "devDependencies": {
+    "ferad": "^4.0.0",
+    "ferad-tasks": "^4.0.0"
+  }
+}
+```
+
+### `feradfile.js`
+More information on [task definition][tasks].
 ```javascript
 var ferad = require('ferad');
 var tasks = require('ferad-tasks');
 
 ferad.tasks(tasks);
-ferad.task('echo', function(o) {
+ferad.task('echo', function(o, cb) {
     console.log(o.message);
+	cb()
 })
-```
-### `package.json`:
-```json
-TODO: real example
 ```
 
 ## License
@@ -45,6 +62,8 @@ TODO: real example
 [gitter-image]: https://badges.gitter.im/feradjs/ferad.png
 
 [homepage]: https://github.com/feradjs/ferad
+[config]: https://github.com/feradjs/ferad/docs/SYNTAX.md
+[tasks]: https://npmjs.org/package/ferad
 
-[`package.json`]: #feradjson
-[`feradfile.js`]: #feradfilejs
+[`package.json`]: #package-json
+[`feradfile.js`]: #feradfile-js

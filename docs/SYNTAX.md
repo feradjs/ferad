@@ -98,6 +98,7 @@ Options are defined in named buckets using colon.
 ```
 
 ### Default
+TBD DEPRECATED in favor of global options
 Default options are applied to all tasks and take the lowest precedence.
 ```json
 {
@@ -163,9 +164,48 @@ Bucket `a` is equal to:
 
 ### Option Differentiation
 TBD
+By task inside bucket using dot after task name.
+```json
+{
+  ":opts": {
+    "x": 1,
+    "a.": {
+      "x": 2
+    }
+  }
+}
+```
+Applying bucket `opts` will yield `x = 2` for `a` task and `x = 1` for all other tasks.
+
+### Option Differentiation by Name
+TBD
+Inside bucket using dot before option name.
+```json
+{
+  ":opts": {
+    ".x": {
+      "a": 1,
+      "b": 2
+    }
+  }
+}
+```
+Applying bucket `opts` will yield `x = 1` for `a` task and `x = 2` for `b` task.
+
+On task level.
+```json
+{
+  ".dist": "./dist",
+  ".src": {
+    "sass": "**/*.sass",
+    "jade": "**/*.jade"
+  }
+}
+```
 
 ### Short Option
-There is a short syntax for single option definition.
+TBD
+There is a short syntax for single option definition for either task or bucket.
 ```json
 {
   "a.x": 1
@@ -186,9 +226,24 @@ For bucket `opts` task `a` has `x = 1` and task `b` has `x = 2`.
 
 ### Inline Options
 TBD
+Options can be applied inline to tasks using curly braces, without creating buckets. Content of curly braces is parsed as regular JSON.
+```json
+{
+  "command": "task: { src: 'src' }"
+}
+```
 
 ### Multiple Buckets
 TBD
+Options can be reused between buckets using comma.
+```json
+{
+  ":a, :b": {
+    "x": 1
+  },
+  ":a.y": 2
+}
+```
 
 ## Resolution Examples
 TBD

@@ -14,6 +14,11 @@
 ## Overview
 Ferad configuration is defined in the `"ferad"` section of [`package.json`] file.
 
+It consists of definition of commands and options.
+Commands define a group of tasks executed together.
+Options define parameters passed to tasks.
+They could be either grouped in buckets and applied ad-hoc or assigned to tasks directly.
+
 ## Commands
 Commands are made of tasks with applied [options](#options).
 
@@ -245,7 +250,18 @@ Options can be reused between buckets using comma.
 }
 ```
 
-## Resolution Examples
+### Options Reusing
+TBD
+Option values can be reused by using comma.
+```json
+{
+  ":opts": {
+    "x, y": 1
+  }
+}
+```
+
+## Examples
 TBD
 
 ## Implementation Details

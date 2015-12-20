@@ -4,6 +4,8 @@
 ## About
 Ferad makes Gulp tasks reusable by separating functionality from configuration. Ferad treats configuration as first-class citizen. It provides powerful declarative configuration syntax.
 
+The idea is to distribute the whole project workflow, not just single tasks. And have the setup flexibly configurable and extendable. Unlike templating (code generation) solutions, thus maintaining high level of abstraction.
+
 ## Features
 * Ferad tasks accept options.
 * Option buckets are composable.
